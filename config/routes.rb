@@ -1,9 +1,16 @@
 Blog::Application.routes.draw do
-  get "static_pages/home"
-  get "static_pages/about"
-  get "static_pages/gallery"
-  get "static_pages/map"
-  get "static_pages/jetprogram"
+
+  root to: 'static_pages#home'
+
+  match '/about', to: 'static_pages#about', via: 'get'
+  match '/gallery', to: 'static_pages#gallery', via: 'get'
+  match '/map', to: 'static_pages#map', via: 'get'
+  match '/jet', to: 'static_pages#jet', via: 'get'
+  #get "static_pages/home"
+  #get "static_pages/about"
+  #get "static_pages/gallery"
+  #get "static_pages/map"
+  #get "static_pages/jet"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
