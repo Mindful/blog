@@ -72,13 +72,18 @@ p {
   text-decoration: none;
 }
 
+.headerlink {
+  font-size:25px;
+  color:#dcdbbf;
+}
+
 /* footer */
 
 footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
-  color: #999;
+  color: #dcdbbf;
 }
 
 footer a {
@@ -96,4 +101,102 @@ footer small {
 footer ul {
   float: left;
   list-style: none;
+}
+
+    /* Blog CSS -Colin 06/11/13 */
+body
+{
+  margin:auto;
+  padding:2%;
+  background-color:#56A0F5;
+  background-image:image-url("background_1.gif");
+  background-attachment:fixed;
+  background-size:100% 100%;
+  background-position: left bottom;
+  text-align:center;
+}
+
+.container
+{
+  background-color:rgba(0,79,214,0.8);
+  border-radius:8px;
+  padding:2%;
+  margin:10px;
+}
+
+.postbox
+{
+  border-radius:8px;
+  padding-left:2%;
+  padding-bottom:2%;
+  padding-right:2%;
+  margin:10px;
+}
+
+
+a.link
+{
+  font-size:30px;
+  color: red;
+}
+
+a.nav:hover
+{
+  text-shadow:2px 2px black;
+}
+
+#header
+{
+  padding-top:10px;
+  padding-bottom:10px;
+  align:right;
+  width: 900px;
+  margin: 0 auto;
+  margin-bottom:10px;
+  background-color:rgba(0,79,214,0.8);  
+}
+
+#body
+{
+  border-radius:8px;
+  padding:2%;
+  padding-top:0px;
+  padding-bottom:0px;
+  width: 900px;
+  margin: 0 auto;
+}
+
+div.post
+{
+  background-color:#56A0F5;
+  padding:2%;
+  border-radius:8px;
+  margin-bottom:20px;
+}
+
+.post-head img h3 p
+{
+  display:inline;
+}
+
+.post-head h3
+{
+  position:relative;
+  right:25px;
+}
+
+.post-head img
+{
+  float:left;
+  position:relative;
+  right:50px;
+  height:60px;
+  width:60px;
+}
+
+.tag
+{
+  background-color:orange;
+  padding:2px;
+  border-radius:2px;
 }
