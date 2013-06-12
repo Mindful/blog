@@ -1,5 +1,7 @@
 Blog::Application.routes.draw do
 
+  get "users/edit"
+  get "users/update"
   root to: 'static_pages#home'
 
   match '/about', to: 'static_pages#about', via: 'get'
