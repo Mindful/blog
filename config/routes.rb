@@ -1,13 +1,23 @@
 Blog::Application.routes.draw do
 
+
+  resources :users, only: [:edit, :update]
+  resources :sessions, only: [:new, :create, :destroy]
+  
+
   get "users/edit"
   get "users/update"
+
+
   root to: 'static_pages#home'
 
   match '/about', to: 'static_pages#about', via: 'get'
-  match '/gallery', to: 'static_pages#gallery', via: 'get'
-  match '/map', to: 'static_pages#map', via: 'get'
+  match '/gallery', to: 'static_pages#gallery', via: 'get' #this may end up being photos#index
+  match '/map', to: 'static_pages#map', via: 'get' #this may end up being maps#index
   match '/jet', to: 'static_pages#jet', via: 'get'
+
+  match '/login', to: 'sessions#new', via: 'get'
+  match '/logout', to: 'sessions#destroy', via: 'delete' 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
