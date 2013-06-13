@@ -18,6 +18,10 @@ module SessionsHelper
     @current_user ||= User.find_by(remember_token: cookies[:remember_token]) 
   end
 
+  def current_user?(user)
+    user == current_user
+  end
+
   def authenticate?
   	if !current_user.nil?
   		cookies[:remember_token] = { value: current_user.remember_token, expires: 3.days.from_now.utc }
@@ -26,4 +30,15 @@ module SessionsHelper
   		false
   	end
   end
+
+  def require_login
+  end
+
+  def require_correct_user
+  end
+
+  def require_not_login
+  end
+
+  
 end

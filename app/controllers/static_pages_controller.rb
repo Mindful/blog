@@ -15,6 +15,6 @@ class StaticPagesController < ApplicationController
   end
 
   def admin
-    redirect_to(root_path) unless authenticate?
+    redirect_to login_url, error: "Please sign in." unless authenticate? #this is good except the erro doesn't seem to work
   end
 end
