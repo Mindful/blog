@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
-  before_action :signed_in_user
-  before_action :correct_user
+  before_action :require_login
+  before_action :require_correct_user
+
   #hits everything, but our only two actions are edit and update
 
   def edit
@@ -28,13 +29,4 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 
-    def signed_in_user
-      #redirect_to signin_url, notice: "Please sign in." unless signed_in?	
-      redirect_to login_url, error: "Please sign in." unless authenticate?
-    end
-
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(admin_path) unless current_user?(@user) #this should redirect to editing yourself
-    end
 end
