@@ -13,4 +13,8 @@ class StaticPagesController < ApplicationController
 
   def jet
   end
+
+  def admin
+    redirect_to(root_path) unless authenticate?
+  end
 end

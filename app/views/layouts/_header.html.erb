@@ -8,6 +8,9 @@
           <li><%= link_to "Gallery", gallery_path, :class=> "headerlink" %></li>
           <li><%= link_to "Map", map_path, :class=> "headerlink" %></li>
           <li><%= link_to "JET Program", jet_path, :class=> "headerlink" %></li>
+          <% if authenticate? %>
+          <li><%= link_to "Admin", jet_path, :class=> "headerlink" %></li>
+          <% end %>
       </ul>
     </div>
   </div>

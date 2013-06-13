@@ -15,6 +15,7 @@ Blog::Application.routes.draw do
   match '/gallery', to: 'static_pages#gallery', via: 'get' #this may end up being photos#index
   match '/map', to: 'static_pages#map', via: 'get' #this may end up being maps#index
   match '/jet', to: 'static_pages#jet', via: 'get'
+  match '/admin', to: 'static_pages#admin', via: 'get'
 
   match '/login', to: 'sessions#new', via: 'get'
   match '/logout', to: 'sessions#destroy', via: 'delete' 
