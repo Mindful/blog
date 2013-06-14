@@ -1,8 +1,6 @@
  <header>
-  <div id="header" class="header container center">
-    <div class="navbar span12" style="padding:0px;margin:0px;">
-      <ul class="nav pull-left">
-        <li><%= link_to image_tag("logo.gif", :size => "50x50", :style => "float:left;"), root_path %></li>
+    <div id= "header" class="navbar span12 header" style="padding:0px;margin:0px;">
+      <ul class="nav">
           <li><%= link_to "Home", root_path, :class=> "headerlink" %></li>
           <li><%= link_to "About", about_path, :class=> "headerlink" %></li>
           <li><%= link_to "Gallery", gallery_path, :class=> "headerlink" %></li>
@@ -13,5 +11,4 @@
           <% end %>
       </ul>
     </div>
-  </div>
  </header>
