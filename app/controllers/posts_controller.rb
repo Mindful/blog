@@ -4,7 +4,12 @@ class PostsController < ApplicationController
 
 
   def index
-    @posts = Post.all
+    #@posts = Post.where(:user_id => current_user.id).paginate(:page => params[:page]) for scoped queries
+    @posts = Post.paginate(:page => params[:page]) 
+    respond_to do |format| #is this necessary?
+      format.html
+      format.js # this, I am reasonably sure, si so that we process the embedded ruby in the accompanying javascript
+    end
   end
 
   def show

@@ -1,6 +1,7 @@
  <div class="row body">
   <div id="posts" class="span8 bluebox">
     <%= render @posts %>
+    <%= link_to 'Load More Posts', root_path(:page => @posts.next_page), :class => 'load-more-posts', :remote => true if @posts.next_page %>
   </div>
   <!--end posts-->
  

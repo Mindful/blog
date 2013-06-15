@@ -12,13 +12,16 @@ Blog::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   
 
+  #match '/index', to: 'posts#index', via: 'get'
+
 
   #these are gets, but they're fine the way they are - nobodoy should care about these urls anyway
   get "users/edit"
   get "users/update"
 
 
-  root to: 'static_pages#home'
+  #root to: 'static_pages#home'
+  root to: 'posts#index', via: 'get'
 
   match '/about', to: 'static_pages#about', via: 'get'
   match '/gallery', to: 'static_pages#gallery', via: 'get' #this may end up being photos#index
