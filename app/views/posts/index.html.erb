@@ -1,0 +1,16 @@
+ <div class="row body">
+  <div id="posts" class="span8 bluebox">
+	<% @posts.each do |post| %>
+      <% content_for :post do %>
+        <%= post.content_html %>
+	  <% end %>
+      <%= render 'layouts/post' %>
+	<% end %>
+  </div>
+  <!--end posts-->
+ 
+  <div id="sidebar" class="span4">
+  	<%= render 'layouts/sidebar' %>
+  <!--end sidebar-->   
+  </div>
+ </div>

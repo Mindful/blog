@@ -1,10 +1,19 @@
 Blog::Application.routes.draw do
 
 
+  get "posts/index"
+  get "posts/show"
+  get "posts/new"
+  get "posts/create"
+  get "posts/edit"
+  get "posts/update"
+  get "posts/destroy"
   resources :users, only: [:edit, :update]
   resources :sessions, only: [:new, :create, :destroy]
   
 
+
+  #these are gets, but they're fine the way they are - nobodoy should care about these urls anyway
   get "users/edit"
   get "users/update"
 
