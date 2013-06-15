@@ -1,11 +1,6 @@
  <div class="row body">
   <div id="posts" class="span8 bluebox">
-	<% @posts.each do |post| %>
-      <% content_for :post do %>
-        <%= post.content_html %>
-	  <% end %>
-      <%= render 'layouts/post' %>
-	<% end %>
+    <%= render :partial =>'layouts/post', :collection => @posts %>
   </div>
   <!--end posts-->
  
