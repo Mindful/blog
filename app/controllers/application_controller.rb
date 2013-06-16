@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
   	clear_return_to
   end
 
+  def clear_return_to
+    session[:return_to] = nil unless request.url == login_url #clear the return to unless it's login page
+  end
+
   def require_login
   	unless @login
   	  session[:return_to] = request.url #so that we can come back to it once they log in

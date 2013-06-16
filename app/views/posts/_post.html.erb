@@ -1,10 +1,15 @@
 <div class="post tanbox">
     <div class="post-head">
-        <div style = "background-color:#87adb5; height:60px; width:60px; float:left; position:relative; right:75px; border-radius: 50%;">
+        <div class="bluebox post-image">
             <%= image_tag("shimane_flag.gif", :size => "100%;") %>
         </div>
-        <h3 style="display:inline; position: relative; right:60px;"><%= post.title %></h3>
+        <h3 class="post-title" style="display:inline; position: relative; right:60px;"><%= post.title %></h3>
+        <%= link_to post.title, post, :class => "post-title"%>
         <p style="text-align:left;font-size:12px;color:black; position: relative; right: 60px;"><%= post.created_at.to_s(:pretty) %></p>
+        <% if @login %>
+          <%= link_to 'Delete', post, method: :delete, :class => "admin-button", data: { confirm: "You sure?" } %>
+          <%= link_to 'Edit', edit_post_path(post) %>
+        <% end %>
 	<hr class="end-post-section"/>
     </div>
     <div class="post-body" style="text-align:left;">

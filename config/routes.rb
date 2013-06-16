@@ -8,8 +8,10 @@ Blog::Application.routes.draw do
   get "posts/edit"
   get "posts/update"
   get "posts/destroy"
+
   resources :users, only: [:edit, :update]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :posts
   
 
   #match '/index', to: 'posts#index', via: 'get'

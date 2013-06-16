@@ -1,2 +1,10 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+ <div class="row content">
+  <div class="span8 bluebox" id ="post-wrapper">
+  	<div id="posts" class="abstract ">
+      <%= render @post %>
+    </div>
+  </div>
+  <!--end posts-->
+ 
+  <%= render 'layouts/sidebar' %>
+ </div>

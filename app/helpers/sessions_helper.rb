@@ -27,15 +27,6 @@ module SessionsHelper
     session.delete(:return_to)
   end
 
-  def authenticate_header?
-  	session[:return_to] = nil unless request.url == login_url #clear the return to unless it's login page
-  	authenticate?
-  end
-
-  def clear_return_to
-    session[:return_to] = nil unless request.url == login_url #clear the return to unless it's login page
-  end
-
   def require_correct_user
   	@user = User.find(params[:id])
     redirect_to(edit_user_path(current_user)) unless current_user?(@user) #redirect to your own edit page if you try and do something to someone else's

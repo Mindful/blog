@@ -79,14 +79,13 @@ footer ul {
 
 header
 {
-  height:40px; /*matches the height of the div it contains; added for layout reasons, but might break in some obscure circumstance */
+  height:40px; /*matches the height of the div it contains; added for layout reasons, but might break if we edit the header */
 }
 
 #header
 {
   align:right;
   margin: 0 auto;
-  background-color:#87adb5;
   text-align: center;
 }
 
@@ -101,7 +100,7 @@ header
 
 
 
-/* Blog CSS -Colin 06/11/13 */
+/* Blog CSS */
 
 .postbox
 {
@@ -146,6 +145,23 @@ div.post
   right:25px;
 }
 
+.post-image
+{
+ height:60px;
+ width:60px;
+ float:left;
+ position:relative;
+ right:75px;
+ border-radius: 50%;
+}
+
+hr.end-post-section
+{
+  margin: 2% auto;
+  height:0px;
+  border:1px dotted #87adb5;
+  width:50%;
+}
 
 .tag
 {
