@@ -1,7 +1,8 @@
  <div class="row body">
   <div id="posts" class="span8 bluebox">
     <%= render @posts %>
-    <%= link_to('Load More Posts', root_path(:page => @posts.next_page), :class => 'load-more-posts', :remote => true) if @posts.next_page %>
+    <%= link_to('Next page', root_path(:page => @posts.next_page), :class => 'posts-text') if @posts.next_page %>
+    <%= link_to('Previous page', root_path(:page => @posts.previous_page), :class => 'posts-text') if @posts.previous_page %>
   </div>
   <!--end posts-->
  
@@ -10,9 +11,14 @@
   <!--end sidebar-->   
   </div>
  </div>
-<script>
+ <!--this adds an inview event (which fires on in or out of view, hence the needed if (!visible)) to the get more posts link. also changes the link at the bottom to be autloady if we have Javascript-->  
+ <script>
+  $('.posts-text').remove();
+  <% if @posts.next_page %>
+    $('#posts').append('<p id="more-posts" data-posts="<%= root_path(:page => @posts.next_page) %>">Loading more posts...</p>');
+  <% end %>
   $(function() {
-  return $('a.load-more-posts').on('inview', function(e, visible) { 
+  return $('#more-posts').on('inview', function(e, visible) { 
     if (!visible) {
       return;
     }
