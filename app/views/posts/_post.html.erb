@@ -5,11 +5,11 @@
         </div>
         <h3 style="display:inline; position: relative; right:60px;"><%= post.title %></h3>
         <p style="text-align:left;font-size:12px;color:black; position: relative; right: 60px;"><%= post.created_at.to_s(:pretty) %></p>
-        <hr/>
+	<hr class="end-post-section"/>
     </div>
     <div class="post-body" style="text-align:left;">
         <%= post.content_html %>
-        <hr/>
+	<hr class="end-post-section"/>
     </div>
     <div class="post-tags">
         <a href="#" class="tag">Programming</a>

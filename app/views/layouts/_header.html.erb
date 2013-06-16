@@ -1,12 +1,12 @@
  <header>
-    <div id= "header" class="navbar span12 header" style="padding:0px;margin:0px;">
+    <div id= "header" class="navbar span12 header bluebox" style="padding:0px;margin:0px;">
       <ul class="nav">
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "About", about_path %></li>
           <li><%= link_to "Gallery", gallery_path %></li>
           <li><%= link_to "Map", map_path %></li>
           <li><%= link_to "JET Program", jet_path %></li>
-          <% if authenticate_header? %>
+          <% if @login %>
           <li><%= link_to "Admin", admin_path %></li>
           <% end %>
       </ul>
