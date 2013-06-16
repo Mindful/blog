@@ -1,11 +1,11 @@
 //I believe the reason this needs its own files is so that Ruby adjust the ERB here with every getScript call
 //Also, I guess single quotes won't stop ERB from parsing, and are required for the javascript arguments
 
-//now our problem is errors in the ERB that we can't see. wonderful
 alert('index.js called');
 $('#posts').append('<%= escape_javascript render @posts %>'); //this line works now
 $('a.load-more-posts').attr('href', '<%= root_path page: @posts.next_page %>'); //this works too, except the posts are appended after it, and they need to instead push it further down the page
- 
+//window.history.replaceState({}, document.title, '/?page=2') //this makes things incomprehensibly buggy, though maybe not, because the script doesn't work when I navigate back anyway
+ //also we need to update the page parameter so a refresh or back will take users back to where they were
 <% unless @posts.next_page %>
   $('a.load-more-posts').remove();
 <% end %>

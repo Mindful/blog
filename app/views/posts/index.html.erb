@@ -1,7 +1,7 @@
  <div class="row body">
   <div id="posts" class="span8 bluebox">
     <%= render @posts %>
-    <%= link_to 'Load More Posts', root_path(:page => @posts.next_page), :class => 'load-more-posts', :remote => true if @posts.next_page %>
+    <%= link_to('Load More Posts', root_path(:page => @posts.next_page), :class => 'load-more-posts', :remote => true) if @posts.next_page %>
   </div>
   <!--end posts-->
  
@@ -10,3 +10,13 @@
   <!--end sidebar-->   
   </div>
  </div>
+<script>
+  $(function() {
+  return $('a.load-more-posts').on('inview', function(e, visible) { 
+    if (!visible) {
+      return;
+    }
+    return $.getScript($(this).attr('href'));
+  });
+});
+</script>
