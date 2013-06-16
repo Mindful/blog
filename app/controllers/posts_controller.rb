@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     @posts = Post.paginate(:page => params[:page]) 
     respond_to do |format| #is this necessary?
       format.html
-      format.js # this, I am reasonably sure, si so that we process the embedded ruby in the accompanying javascript
+      format.js #99% sure what this is doing is just fetching the index.js file
     end
   end
 
