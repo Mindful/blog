@@ -2,7 +2,7 @@
 //Also, I guess single quotes won't stop ERB from parsing, and are required for the javascript arguments
 
 $('#posts').append('<%= escape_javascript render @posts %>'); 
-$('#more-posts').attr('href', '<%= root_path page: @posts.next_page %>'); 
+$('#more-posts').attr('data-posts', '<%= root_path page: @posts.next_page %>'); 
 
 <% unless @posts.next_page %>
   $('#more-posts').remove();
