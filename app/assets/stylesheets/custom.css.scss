@@ -19,7 +19,7 @@ body
   margin:auto;
   padding:2%;
   background-color:#ffd;
-  background-image:image-url("background.gif");
+  background-image:image-url("Background_1.gif");
   background-attachment:fixed;
   background-size:100% 100%;
   background-position: left bottom;
@@ -33,11 +33,17 @@ body
 
 .bluebox {
   background-color:#87adb5;
+  border-radius: 0px;
 }
 
 .tanbox {
   background-color:#ffd;
-  border-radius: 1%;
+  border-radius: 4px;
+}
+
+.abstract {
+  padding: 0px;
+  margin: 0px;
 }
 
 
@@ -71,6 +77,10 @@ footer ul {
 
 /* header */
 
+header
+{
+  height:40px; /*matches the height of the div it contains; added for layout reasons, but might break in some obscure circumstance */
+}
 
 #header
 {
@@ -91,9 +101,7 @@ footer ul {
 
 
 
-
-
-    /* Blog CSS -Colin 06/11/13 */
+/* Blog CSS -Colin 06/11/13 */
 
 .postbox
 {
@@ -104,25 +112,23 @@ footer ul {
   margin:10px;
 }
 
-
-.body
+.content
 {
+  padding: 0px;
+  padding-top: 2%;
   margin-left: 0px; /*overwrite bootstrap .row{margin-left:-20px}*/
 }
 
-#posts
+#post-wrapper
 {
   margin:0px;
-  margin-top:2%;
   padding:2%;
   padding-left:0px;
   padding-right:0px;
-  background-color:#87adb5;
 }
 
 div.post
 {
-  background-color:#ffd;
   padding:2%;
   margin:2%;
   margin-left:30px;
@@ -150,18 +156,17 @@ div.post
 
 #sidebar
 {
-  padding:2%;
-  padding-right:0px;
-  padding-left:0px;
   margin-right:0px;
+  padding-top:30px;
+  padding-bottom:30px;
 }
 
 div.sidebar
 {
-  background-color:#87adb5;
   padding:2%;
-  border-radius:2px;
-  margin-bottom:20px;
+  margin:2%;
+  margin-left:30px;
+  margin-right:30px;
 }
 
 
