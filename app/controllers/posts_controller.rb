@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     @posts = Post.paginate(:page => params[:page])
   end
 
-  def admin_index
+  def admin_index #the html/erb for this may eventually be very similar to search results, just with more admin options
     @posts = Post.all
   end
 
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
     Post.find(params[:id]).destroy
     flash[:success] = "Post deleted."
     if request.referrer == admin_index_url
-      redirect_to admin_index_path
+      redirect_to admin_index_path #EVENTUAL TODO: send an ajax/remote request from the admin_index, delete the post, and use javascript to remove it without ever reloading the page
     else
       redirect_to root_url
     end

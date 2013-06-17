@@ -3,24 +3,25 @@ Blog::Application.routes.draw do
 
   #resources is jsut a really fast way to declare a bunch of routes for things
   resources :users, only: [:edit, :update], :path => '/admin/users' #because the user functions are all admin only, we change the preface to include
-  resources :sessions, only: [:new, :create, :destroy]
-  resources :posts
+  resources :posts #TODO: some of these need /admin/ paths
   
 
-  #match '/index', to: 'posts#index', via: 'get'
-
-
+  #posts
   root to: 'posts#home_index', via: 'get'
   match '/admin/index', to: 'posts#admin_index', via: 'get'
 
+
+  #static pages
   match '/about', to: 'static_pages#about', via: 'get'
   match '/gallery', to: 'static_pages#gallery', via: 'get' #this may end up being photos#index
   match '/map', to: 'static_pages#map', via: 'get' #this may end up being maps#index
   match '/jet', to: 'static_pages#jet', via: 'get'
   match '/admin', to: 'static_pages#admin', via: 'get'
 
+  #sessions
   match '/login', to: 'sessions#new', via: 'get'
   match '/logout', to: 'sessions#destroy', via: 'delete' 
+  match '/authenticate', to: 'sessions#create', via: 'post'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

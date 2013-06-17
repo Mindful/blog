@@ -1,9 +1,14 @@
-<ul class="admin-index">
+<div id="admin-index" class="bluebox">
+<h3>Post Index</h3>
+<ul class="post-list">
   <% @posts.each do |post| %>
-    <li>
-    	<%= link_to post.title, post%>
-        <%= link_to 'Delete', post, method: :delete, :class => "admin-button", data: { confirm: "You sure?" } %>
-        <%= link_to 'Edit', edit_post_path(post) %>
+    <li class="tanbox">
+        <%= link_to post.title, post, :style => "color:55A" %>
+       <div class="abstract" style="display:inline; float:right;">
+        <%= link_to 'Delete', post, method: :delete, :class => "admin-button", data: { confirm: "You sure?" } %> |
+	<%= link_to 'Edit', edit_post_path(post), :class => "admin-button" %>
+       </div>
     </li>
   <% end %>
 </ul>
+</div>

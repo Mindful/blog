@@ -1,0 +1,35 @@
+#admin-page
+{
+  margin-top:20px;
+}
+
+#admin-index /* div */
+{
+  margin-top:20px;
+  padding:2%;
+}
+
+.admin-button
+{
+  background-color:#DDC;
+  border-radius:5px;
+  padding:3px;
+  text-decoration:none;
+}
+
+.admin-button:hover
+{
+  background-color:#BBB;
+  text-decoration:none;
+}
+
+.post-list
+{
+  list-style-type:none;
+}
+
+.post-list > li
+{
+  padding: 4px;
+  margin: 5px 0px;
+}
