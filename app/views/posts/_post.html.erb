@@ -3,7 +3,6 @@
         <div class="bluebox post-image">
             <%= image_tag("shimane_flag.gif", :size => "100%;") %>
         </div>
-        <h3 class="post-title" style="display:inline; position: relative; right:60px;"><%= post.title %></h3>
         <%= link_to post.title, post, :class => "post-title"%>
         <p style="text-align:left;font-size:12px;color:black; position: relative; right: 60px;"><%= post.created_at.to_s(:pretty) %></p>
         <% if @login %>

@@ -7,4 +7,3 @@ $('#more-posts').attr('data-posts', '<%= root_path page: @posts.next_page %>');
 <% unless @posts.next_page %>
   $('#more-posts').remove();
 <% end %>
-

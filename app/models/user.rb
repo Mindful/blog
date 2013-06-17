@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   
   private
 
-    def create_remember_token
-      self.remember_token = SecureRandom.urlsafe_base64
+    def create_remember_token 
+      self.remember_token = SecureRandom.urlsafe_base64 + self.id.to_s #concatinate with user ID to ensure uniqueness
     end
 end

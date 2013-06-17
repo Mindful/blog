@@ -1,15 +1,8 @@
 Blog::Application.routes.draw do
 
 
-  get "posts/index"
-  get "posts/show"
-  get "posts/new"
-  get "posts/create"
-  get "posts/edit"
-  get "posts/update"
-  get "posts/destroy"
-
-  resources :users, only: [:edit, :update]
+  #resources is jsut a really fast way to declare a bunch of routes for things
+  resources :users, only: [:edit, :update], :path => '/admin/users' #because the user functions are all admin only, we change the preface to include
   resources :sessions, only: [:new, :create, :destroy]
   resources :posts
   
@@ -17,13 +10,8 @@ Blog::Application.routes.draw do
   #match '/index', to: 'posts#index', via: 'get'
 
 
-  #these are gets, but they're fine the way they are - nobodoy should care about these urls anyway
-  get "users/edit"
-  get "users/update"
-
-
-  #root to: 'static_pages#home'
-  root to: 'posts#index', via: 'get'
+  root to: 'posts#home_index', via: 'get'
+  match '/admin/index', to: 'posts#admin_index', via: 'get'
 
   match '/about', to: 'static_pages#about', via: 'get'
   match '/gallery', to: 'static_pages#gallery', via: 'get' #this may end up being photos#index

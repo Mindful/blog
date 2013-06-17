@@ -1,0 +1,9 @@
+<ul class="admin-index">
+  <% @posts.each do |post| %>
+    <li>
+    	<%= link_to post.title, post%>
+        <%= link_to 'Delete', post, method: :delete, :class => "admin-button", data: { confirm: "You sure?" } %>
+        <%= link_to 'Edit', edit_post_path(post) %>
+    </li>
+  <% end %>
+</ul>
