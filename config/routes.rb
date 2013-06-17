@@ -3,12 +3,12 @@ Blog::Application.routes.draw do
 
   #resources is jsut a really fast way to declare a bunch of routes for things
   resources :users, only: [:edit, :update], :path => '/admin/users' #because the user functions are all admin only, we change the preface to include
-  resources :posts #TODO: some of these need /admin/ paths
-  
 
   #posts
+  resources :posts, except: [:index, :show], :path => '/admin/posts' 
   root to: 'posts#home_index', via: 'get'
   match '/admin/index', to: 'posts#admin_index', via: 'get'
+  match '/posts/:id', to: 'posts#show', via: 'get' #these have to be routed to using public_post_path ion the posts_helper, which is really not ideal
 
 
   #static pages

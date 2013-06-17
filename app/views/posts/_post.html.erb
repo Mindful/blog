@@ -3,20 +3,25 @@
         <div class="bluebox post-image">
             <%= image_tag("shimane_flag.gif", :size => "100%;") %>
         </div>
-        <%= link_to post.title, post, :class => "post-title"%>
-        <p style="text-align:left;font-size:12px;color:black; position: relative; right: 60px;"><%= post.created_at.to_s(:pretty) %></p>
-        <% if @login %>
+        <%= link_to post.title, public_post_path(post), :class => "post-title"%>
+	<p style="text-align:left;font-size:12px;color:black; position: relative; right: 60px; display: inline;"><br><%= post.created_at.to_s(:pretty) %></p>
+	<% if @login %>
+	<div class="abstract" style="display:inline;float:right;">
           <%= link_to 'Delete', post, method: :delete, :class => "admin-button", data: { confirm: "You sure?" } %>
-          <%= link_to 'Edit', edit_post_path(post) %>
+	  <%= link_to 'Edit', edit_post_path(post), :class => "admin-button" %>
+	</div>
         <% end %>
-	<hr class="end-post-section"/>
     </div>
+
     <div class="post-body" style="text-align:left;">
+        <hr class="end-post-section"/>
         <%= post.content_html %>
 	<hr class="end-post-section"/>
     </div>
+  <!-- tags
     <div class="post-tags">
         <a href="#" class="tag">Programming</a>
         <a href="#" class="tag">"Off by one" error</a>
     </div>
+      -->
 </div>

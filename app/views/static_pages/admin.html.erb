@@ -1,9 +1,9 @@
 <div id="admin-page" class="bluebox">
 
 HERE IS WHERE YOU ADMINISTRATE THINGS!!!!!!!
-<%= link_to "Sign out", logout_path, method: "delete" %>
-<%= link_to "Post index", admin_index_path %>
+<%= link_to "Sign out", logout_path, method: "delete", :class => "admin-button" %>
+<%= link_to "Post index", admin_index_path, :class => "admin-button" %>
   
-<%= link_to "Settings", edit_user_path(current_user) %>
+<%= link_to "Settings", edit_user_path(current_user), :class => "admin-button" %>
 
 </div>

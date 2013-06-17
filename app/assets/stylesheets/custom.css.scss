@@ -77,7 +77,7 @@ footer ul {
 
 header
 {
-  height:40px; /*matches the height of the div it contains; added for layout reasons, but might break if we edit the header */
+  height:48px; /*matches the height of the div it contains; added for layout reasons, but might break if we edit the header */
 }
 
 #header
@@ -95,8 +95,6 @@ header
   text-shadow: none;
   a:hover {text-decoration:underline;}
 }
-
-
 
 /* Blog CSS */
 
@@ -124,6 +122,11 @@ div.post
 {
   padding:2%;
   margin:2% 30px;
+}
+
+.post-head
+{
+  display:block;
 }
 
 .post-head img h3 p

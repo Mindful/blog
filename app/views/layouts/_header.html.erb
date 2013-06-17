@@ -5,10 +5,11 @@
           <li><%= link_to "About", about_path %></li>
           <li><%= link_to "Gallery", gallery_path %></li>
           <li><%= link_to "Map", map_path %></li>
-          <li><%= link_to "JET Program", jet_path %></li>
-          <% if @login %>
-          <li><%= link_to "Admin", admin_path %></li>
-          <% end %>
+	  <li><%= link_to "JET Program", jet_path %></li>
       </ul>
+      <% if @login %>
+      <div id="admin-nav">
+          <%= link_to "Admin", admin_path, :class => "admin-button" %></li>
+      <% end %>
     </div>
  </header>

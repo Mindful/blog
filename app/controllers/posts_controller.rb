@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :require_login, except: [:home_index, :show] #everything except viewing requires that you be logged in --make sure "except" works, else use only
-
+  before_action :require_login, except: [:home_index, :show] 
 
   def home_index
     #@posts = Post.where(:user_id => current_user.id).paginate(:page => params[:page]) for scoped queries
@@ -17,6 +16,7 @@ class PostsController < ApplicationController
   end
 
   def new
+    @post = Post.new
   end
 
   def create

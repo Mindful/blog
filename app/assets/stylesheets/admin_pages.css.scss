@@ -1,6 +1,7 @@
 #admin-page
 {
   margin-top:20px;
+  padding: 2%;
 }
 
 #admin-index /* div */
@@ -11,7 +12,9 @@
 
 .admin-button
 {
-  background-color:#DDC;
+  color:#000;
+  background-color:#AAA;
+  border-color:#999;
   border-radius:5px;
   padding:3px;
   text-decoration:none;
@@ -19,8 +22,23 @@
 
 .admin-button:hover
 {
-  background-color:#BBB;
+  background-color:#999;
   text-decoration:none;
+}
+
+#admin-nav
+{
+  display:inline;
+  float:right;
+  margin:3px 3px;
+  height:90%;
+  padding-top:7px;
+  padding-right:7px;
+}
+
+#admin-nav > a.admin-button
+{
+ font-size:20px; 
 }
 
 .post-list
