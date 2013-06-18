@@ -1,6 +1,14 @@
 Blog::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  #Additional precompiles:
+  config.assets.precompile += ['posts.js']
+  config.assets.precompile += ['glyphicons-halflings.png']
+  config.assets.precompile += ['pagedown-bootstrap-buttons.png']
+
+
+
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -20,10 +28,7 @@ Blog::Application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = true #enabled, although likely only necessary for testing purposes
-  config.assets.precompile += ['posts.js']
-  config.assets.precompile += ['glyphicons-halflings.png']
-  config.assets.precompile += ['pagedown-bootstrap-buttons.png']
+  config.serve_static_assets = false #enabled, although likely only necessary for testing purposes
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
