@@ -26,11 +26,6 @@ body
   background-position: left bottom;
 }
 
-div
-{
-  padding:2%;
-}
-
 #display
 { 
   padding: 0px;
@@ -132,7 +127,7 @@ div.post
 
 .post-head
 {
-  padding-bottom:2%;
+  margin-bottom:7%;
   display:block;
 }
 
@@ -143,6 +138,7 @@ div.post
 
 .post-image
 {
+  padding:2%;
   height:60px;
   width:60px;
   float:left;
@@ -198,14 +194,19 @@ div.sidebar
 
 /* info pages */
 
+.info-page
+{
+  padding: 2%;
+}
+
 .info-header
 {
-
+  padding: 2%;
 }
 
 .info-body
 {
-
+  padding: 2%;
 }
 
 /* error styling */

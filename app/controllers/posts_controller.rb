@@ -31,10 +31,11 @@ class PostsController < ApplicationController
 
   def destroy
     Post.find(params[:id]).destroy
-    flash[:success] = "Post deleted."
     if request.referrer == admin_index_url
-      redirect_to admin_index_path #EVENTUAL TODO: send an ajax/remote request from the admin_index, delete the post, and use javascript to remove it without ever reloading the page
+      render :js => "$(\"li[data-id='#{params[:id].to_s}']\").remove();"
+      #TODO: alert that the thing has been deleted.
     else
+      flash[:success] = "Post deleted."
       redirect_to root_url
     end
   end

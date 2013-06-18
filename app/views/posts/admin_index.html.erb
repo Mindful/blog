@@ -2,10 +2,10 @@
 <h3>Post Index</h3>
 <ul class="post-list">
   <% @posts.each do |post| %>
-    <li class="tanbox">
+    <li class="tanbox" data-id="<%= post.id %>">
         <%= link_to post.title, public_post_path(post), :style => "color:55A" %>
        <div class="abstract" style="display:inline; float:right;">
-        <%= link_to 'Delete', post, method: :delete, :class => "admin-button", data: { confirm: "You sure?" } %> 
+        <%= link_to 'Delete', post, method: :delete, :remote => true, :class => "admin-button", data: { confirm: "You sure?" } %> 
 	<%= link_to 'Edit', edit_post_path(post), :class => "admin-button" %>
        </div>
     </li>
