@@ -1,2 +1,47 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<% provide(:title, 'New Post') %>
+<% provide(:page_specific_javascript, 'posts') %>
+
+<div class="row">
+  <div class="span12 bluebox">
+    <%= form_for(@post) do |f| %>
+
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+
+
+      <div id="wmd-button-bar"></div>
+
+      <label for="wmd-input">Body</label>
+      <%= f.text_area :content_markdown, :class => "wmd-input", :id => "wmd-input" %>
+
+
+      <%= f.submit "Post", class: "btn span3" %>
+    <% end %>
+  </div>
+  		<div class="span8 bluebox" id ="post-wrapper" style="float:right;">
+			<div class="post tanbox">
+			    <div class="post-head">
+			        <div class="bluebox post-image">
+			            <%= image_tag("shimane_flag.gif", :size => "100%;") %>
+			        </div>
+			    <p class="post-title" id="title"><%= @post.title %></p>
+				<p class="post-date"><br><%= Date.today.to_s(:pretty) %></p>
+			    </div>
+
+			    <div class="post-body" style="text-align:left;">
+			        <hr class="end-post-section"/>
+			        <div id="wmd-preview"></div>
+				<hr class="end-post-section"/>
+			    </div>
+			  <!-- tags
+			    <div class="post-tags">
+			        <a href="#" class="tag">Programming</a>
+			        <a href="#" class="tag">"Off by one" error</a>
+			    </div>
+			      -->
+			</div>
+		</div>
+</div>
+
+
+
