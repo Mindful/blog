@@ -29,5 +29,4 @@ Please feel free to use a different markup language if you do not plan to run
 
 
 Credits for things that aren't in the gemfile:
-https://github.com/OscarGodson/EpicEditor
 https://github.com/protonet/jquery.inview

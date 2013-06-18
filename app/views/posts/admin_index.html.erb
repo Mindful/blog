@@ -1,3 +1,4 @@
+<% provide(:title, 'Administrative Index') %>
 <div id="admin-index" class="bluebox">
 <h3>Post Index</h3>
 <ul class="post-list">
@@ -6,7 +7,7 @@
         <%= link_to post.title, public_post_path(post), :style => "color:55A" %>
        <div class="abstract" style="display:inline; float:right;">
         <%= link_to 'Delete', post, method: :delete, :remote => true, :class => "admin-button", data: { confirm: "You sure?" } %> 
-	<%= link_to 'Edit', edit_post_path(post), :class => "admin-button" %>
+	    <%= link_to 'Edit', edit_post_path(post), :class => "admin-button" %>
        </div>
     </li>
   <% end %>
