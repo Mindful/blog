@@ -147,6 +147,19 @@ div.post
   border-radius: 50%;
 }
 
+/* doesn't seem right to have a .post-title and an a.post-title that are identical, but if I remove the "a." one, post titles turn blue on mouseover so... */
+
+.post-title
+{
+  font-family: arial, sans-serif;
+  font-weight: 600;
+  font-size:30px;
+  color:#334;
+  display:inline;
+  position:relative;
+  right:60px;
+}
+
 a.post-title
 {
   font-family: arial, sans-serif;

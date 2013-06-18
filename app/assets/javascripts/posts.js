@@ -12,3 +12,10 @@ $(function() {
     return editor.run();
   });
 });
+
+//sync title input and title on demo post; has to be fired on document ready or it won't find the proper elements
+jQuery(document).ready(function(){
+	$('#post_title').bind('input propertychange', function() {
+	    $('#title').text(this.value);
+	});
+ });

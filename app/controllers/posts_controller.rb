@@ -17,6 +17,8 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @post.title = "Post title"
+    @post.content_markdown = "Post body"
   end
 
   def create
