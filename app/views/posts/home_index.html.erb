@@ -1,4 +1,3 @@
- <div class="row content">
   <div class="span8 bluebox" id ="post-wrapper">
   	<div id="posts" class="abstract ">
       <%= render @posts %>
@@ -9,7 +8,6 @@
   <!--end posts-->
  
  <%= render 'layouts/sidebar' %>
- </div>
  <!--this adds an inview event (which fires on in or out of view, hence the needed if (!visible)) to the get more posts link. also changes the link at the bottom to be autloady if we have Javascript-->  
  <script>
   $('.posts-text').remove();
