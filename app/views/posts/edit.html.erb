@@ -1,8 +1,8 @@
 <% provide(:title, 'New Post') %>
 <% provide(:page_specific_javascript, 'posts') %>
 
-<div class="row">
-  <div class="span12 bluebox">
+<div>
+  <div class="bluebox info-page">
     <%= form_for(@post) do |f| %>
     <div>
       <%= f.label :title, :class=>"post-edit-label" %>
@@ -12,14 +12,11 @@
 
       <div id="wmd-button-bar">
       	<label for="wmd-input" class="post-edit-label">Body</label>
+      	<%= f.submit "Post", :class => "btn span3", :style => "float:right;" %>
       </div>
       <%= f.text_area :content_markdown, :class => "wmd-input", :id => "wmd-input" %>
 
-
-      <%= f.submit "Post", class: "btn span3" %>
-    <% end %>
-  </div>
-  		<div class="span8 bluebox" id ="post-wrapper" style="float:right;">
+  		<div class="span8 bluebox" id ="post-wrapper" style="margin-left:-2%;">
 			<div class="post tanbox">
 			    <div class="post-head">
 			        <div class="bluebox post-image">
@@ -42,6 +39,8 @@
 			      -->
 			</div>
 		</div>
+    <% end %>
+  </div>
 </div>
 
 
