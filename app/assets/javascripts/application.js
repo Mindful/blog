@@ -10,8 +10,10 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+// jquery.inview.min.js is a vendor thing (https://github.com/protonet/jquery.inview) so it's in vendor/assets/javascripts
+//
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery.inview.min.js
-//= require_tree .
+//= require bootstrap

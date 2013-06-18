@@ -1,3 +1,4 @@
+
 #admin-page
 {
   margin-top:20px;
@@ -14,7 +15,7 @@
 {
   color:#000;
   background-color:#AAA;
-  border-color:#999;
+  border-color:#888;
   border-radius:5px;
   padding:3px;
   text-decoration:none;
@@ -22,7 +23,7 @@
 
 .admin-button:hover
 {
-  background-color:#999;
+  background-color:#888;
   text-decoration:none;
 }
 
@@ -33,6 +34,7 @@
   margin:3px 3px;
   height:90%;
   padding-top:7px;
+  padding-bottom:0;
   padding-right:7px;
 }
 
