@@ -1,8 +1,7 @@
 //pagedown bootstrap (https://github.com/hughevans/pagedown-bootstrap-rails)
 
-// require Markdown.Converter
-//= require Markdown.Editor.marked
 //= require marked
+//= require marked.editor
 
 
 //sync title input and title on demo post; has to be fired on document ready or it won't find the proper elements
@@ -21,6 +20,6 @@ jQuery(document).ready(function(){
 	  smartLists: false,
 	  smartypants: false,
 	});
-	editor = new Markdown.Editor();
+	editor = new Markdown.Editor('#post_content_html');
     return editor.run();
  });

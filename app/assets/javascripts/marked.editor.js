@@ -1,9 +1,11 @@
-﻿var Markdown;
+﻿//ported from Markdown.Converter.js for compatibility
+var Markdown;
 
 if (typeof exports === "object" && typeof require === "function") // we're in a CommonJS (e.g. Node.js) module
     Markdown = exports;
 else
     Markdown = {};
+//end port
 
 (function () {
 
@@ -22,6 +24,7 @@ else
             isOpera: /opera/.test(nav.userAgent.toLowerCase())
         };
 
+        //ported from Markdown.Converter.js for compatibility
         function identity(x) { return x; }
         function returnFalse(x) { return false; }
 
@@ -55,6 +58,8 @@ else
 
     Markdown.HookCollection = HookCollection;
 
+    //end port
+
 
     // -------------------------------------------------------------------
     //  YOUR CHANGES GO HERE
@@ -86,7 +91,7 @@ else
     // The constructed editor object has the methods:
     // - run() actually starts the editor; should be called after all necessary plugins are registered. Calling this more than once is a no-op.
     // - refreshPreview() forces the preview to be updated. This method is only available after run() was called.
-    Markdown.Editor = function (idPostfix, help) {
+    Markdown.Editor = function (inputField, idPostfix, help) {
         idPostfix = idPostfix || "";
 
         var hooks = this.hooks = new Markdown.HookCollection();
@@ -106,7 +111,7 @@ else
 
             panels = new PanelCollection(idPostfix);
             var commandManager = new CommandManager(hooks);
-            var previewManager = new PreviewManager(panels, function () { hooks.onPreviewRefresh(); });
+            var previewManager = new PreviewManager(inputField, panels, function () { hooks.onPreviewRefresh(); });
             var undoManager, uiManager;
 
             if (!/\?noundo/.test(doc.location.href)) {
@@ -803,7 +808,7 @@ else
         this.init();
     };
 
-    function PreviewManager(panels, previewRefreshCallback) {
+    function PreviewManager(inputField, panels, previewRefreshCallback) {
 
         var managerObj = this;
         var timeout;
@@ -811,6 +816,7 @@ else
         var oldInputText;
         var maxDelay = 3000;
         var startType = "delayed"; // The other legal value is "manual"
+        inputField = $(inputField)
 
         // Adds event listeners to elements
         var setupEvents = function (inputElem, listener) {
@@ -860,8 +866,8 @@ else
 
             var prevTime = new Date().getTime();
 
-            text = marked(text);
-            $('#post_content_html').val(text); //added to update post content
+            text = marked(text); //PRIMARY CHANGES HERE
+            inputField.val(text) //PRIMARY CHANGES HERE
 
             // Calculate the processing time of the HTML creation.
             // It's used as the delay time in the event listener.
