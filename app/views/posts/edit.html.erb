@@ -1,5 +1,10 @@
 <% provide(:title, 'New Post') %>
 <% provide(:page_specific_javascript, 'posts') %>
+<% if request.url == new_post_url %>
+  <% @btn = "Post" %>
+  <% else %>
+  <% @btn = "Update" %>
+<% end %>
 
 <div>
   <div class="bluebox info-page">
@@ -9,10 +14,10 @@
       <%= f.text_field :title %>
     </div>
 
-    <%= f.hidden_field :content_html, :class => "wmd-preview" %>
+    <%= f.hidden_field :content_html %>
       <div id="wmd-button-bar">
       	<label for="wmd-input" class="post-edit-label">Body</label>
-      	<%= f.submit "Post", :class => "btn span3", :style => "float:right;" %>
+      	<%= f.submit @btn, :class => "btn span3", :style => "float:right;" %>
       </div>
       <%= f.text_area :content_markdown, :class => "wmd-input", :id => "wmd-input" %>
 
@@ -42,6 +47,5 @@
     <% end %>
   </div>
 </div>
-
 
 

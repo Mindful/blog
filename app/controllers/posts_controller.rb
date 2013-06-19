@@ -37,6 +37,13 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post = Post.find(params[:id])
+    if @post.update_attributes(post_params)
+      flash[:success] = "Post updated"
+      redirect_to root_url #maybe we should redirect to the post itself?
+    else
+      render 'edit'
+    end
   end
 
   def destroy
@@ -45,7 +52,7 @@ class PostsController < ApplicationController
       render :js => "$(\"li[data-id='#{params[:id].to_s}']\").remove();"
       #TODO: alert that the thing has been deleted.
     else
-      flash[:success] = "Post deleted."
+      flash[:success] = "Post deleted"
       redirect_to root_url
     end
   end
