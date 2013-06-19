@@ -30,3 +30,5 @@ Please feel free to use a different markup language if you do not plan to run
 
 Credits for things that aren't in the gemfile:
 https://github.com/protonet/jquery.inview
+https://github.com/chjj/marked
+https://github.com/tchapi/pagedown-bootstrap (repurposed into marked.editor)

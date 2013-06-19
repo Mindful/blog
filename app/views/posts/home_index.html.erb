@@ -8,18 +8,20 @@
   <!--end posts-->
  
  <%= render 'layouts/sidebar' %>
- <!--this adds an inview event (which fires on in or out of view, hence the needed if (!visible)) to the get more posts link. also changes the link at the bottom to be autloady if we have Javascript-->  
+ <!--this adds an inview event (which fires on in or out of view, hence the needed if (!visible)) to the get more posts link. also changes the link at the bottom to be autloady if we have Javascript. the $(function()) is a way of using jquery to bind a function to be executed only once loading finishes. the selector including a comma adds our inview event to the
+ loading posts texts AND to the second to last post-->  
  <script>
   $('.posts-text').remove();
+
   <% if @posts.next_page %>
-    $('#post-wrapper').append('<p id="more-posts" data-posts="<%= root_path(:page => @posts.next_page) %>">Loading more posts...</p>');
+    $('#post-wrapper').append('<p id="more-posts">Loading more posts...</p>');
+    var loader = $('.post-head:eq(-2),#more-posts');
+    loader.attr('data-posts', '<%= root_path page: @posts.next_page %>'); 
+    loader.on('inview', function(e, visible) { 
+        if (!visible) {
+          return;
+        }
+        return $.getScript($(this).attr('data-posts'));
+    });
   <% end %>
-  $(function() {
-  return $('#more-posts').on('inview', function(e, visible) { 
-    if (!visible) {
-      return;
-    }
-    return $.getScript($(this).attr('data-posts'));
-  });
-});
 </script>
