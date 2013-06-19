@@ -19,6 +19,10 @@ class PostsController < ApplicationController
     @post = Post.new
     @post.title = "Post title"
     @post.content_markdown = "Post body"
+    @btn = "Post"
+    @date = Time.now
+    @date = @date.strftime("%B #{@date.day.ordinalize}, %Y")
+    @title = "New Post"
     render 'edit'
   end
 
@@ -34,6 +38,9 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @btn = "Update"
+    @date = @post.created_at.to_s(:pretty)
+    @title = "Edit Post"
   end
 
   def update
