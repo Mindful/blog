@@ -9,7 +9,7 @@
       <%= f.text_field :title %>
     </div>
 
-
+    <%= f.hidden_field :content_html, :class => "wmd-preview" %>
       <div id="wmd-button-bar">
       	<label for="wmd-input" class="post-edit-label">Body</label>
       	<%= f.submit "Post", :class => "btn span3", :style => "float:right;" %>

@@ -4,11 +4,11 @@ class PostsController < ApplicationController
 
   def home_index
     #@posts = Post.where(:user_id => current_user.id).paginate(:page => params[:page]) for scoped queries
-    @posts = Post.paginate(:page => params[:page])
+    @posts = Post.order("created_at DESC").paginate(:page => params[:page])
   end
 
   def admin_index #the html/erb for this may eventually be very similar to search results, just with more admin options
-    @posts = Post.all
+    @posts = Post.order("created_at DESC")
   end
 
   def show
@@ -23,6 +23,13 @@ class PostsController < ApplicationController
   end
 
   def create
+    @post = Post.new(post_params)
+    if @post.save
+      flash[:success] = "Post created"
+      redirect_to root_url
+    else
+      render 'edit'
+    end
   end
 
   def edit
@@ -42,4 +49,11 @@ class PostsController < ApplicationController
       redirect_to root_url
     end
   end
+
+
+  private
+
+    def post_params #this is basically redundant because it permits all params, but I believe rails will error without it
+      params.require(:post).permit(:title, :content_markdown, :content_html)
+    end
 end
