@@ -1,7 +1,17 @@
 <% provide(:title, "Edit Account") %>
 
 <div class="bluebox info-page">
-  <div class="abstract" style="margin: 0 auto;">
+  <div class = "decorative-box" style="float:right; height:320px;">         
+    <div class="decorative-circle" style="top:35%;">
+            <%= image_tag("shimane_flag.gif", :size => "30%;") %>
+    </div>   
+  </div>
+  <div class = "decorative-box" style="float:left; height:320px;">  
+   <div class="decorative-circle" style="top:35%;">
+            <%= image_tag("shimane_flag.gif", :size => "30%;") %>
+    </div>  
+  </div>
+  <div class="abstract" style = "display: table; margin: 0 auto;">
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages' %>
 
@@ -11,13 +21,16 @@
       <%= f.label :email, :class => "edit-label" %>
       <%= f.text_field :email %>
 
+
       <%= f.label :password, :class => "edit-label" %>
       <%= f.password_field :password %>
 
       <%= f.label :password_confirmation, "Confirm Password", :class => "edit-label" %>
       <%= f.password_field :password_confirmation %>
+      <div style="width:100%">
+      <%= f.submit "Save changes", :class => "btn span3" %>
 
-      <%= f.submit "Save changes", class: "btn span3", :style => "float:left;" %>
+    </div>
     <% end %>
   </div>
 </div>

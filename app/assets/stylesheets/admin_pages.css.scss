@@ -1,3 +1,22 @@
+.decorative-box
+{  
+  width:320px;
+  background-color:#ffd;
+  border-radius: 4px;
+}
+
+.decorative-circle
+{
+  border-radius: 50%; 
+  height:30%; 
+  width:30%; 
+  display: table; 
+  margin: 0 auto; 
+  position:relative; 
+  background-color: #87adb5;
+}
+
+
 
 .admin-button
 {
