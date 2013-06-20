@@ -3,7 +3,7 @@ Blog::Application.configure do
 
   #Additional precompiles:
   config.assets.precompile += ['posts.js']
-  #config.assets.precompile += ['glyphicons-halflings.png']
+  config.assets.precompile += ['glyphicons-halflings.png']
   #config.assets.precompile += ['pagedown-bootstrap-buttons.png']
 
 
