@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.find_by_url(params[:id])
   end
 
   def new
@@ -37,14 +37,14 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @post = Post.find_by_url(params[:id])
     @btn = "Update"
     @date = @post.created_at.to_s(:pretty)
     @title = "Edit Post"
   end
 
   def update
-    @post = Post.find(params[:id])
+    @post = Post.find_by_url(params[:id])
     if @post.update_attributes(post_params)
       flash[:success] = "Post updated"
       redirect_to root_url #maybe we should redirect to the post itself?
@@ -54,9 +54,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    Post.find(params[:id]).destroy
+    Post.find_by_url(params[:id]).destroy
     if request.referrer == admin_index_url
-      render :js => "$(\"li[data-id='#{params[:id].to_s}']\").remove();"
+      render :js => "$(\"li[data-url='#{params[:id].to_s}']\").remove();" #stringex's acts_as_url is making our id param into a url, so we look for that
       #TODO: alert that the thing has been deleted.
     else
       flash[:success] = "Post deleted"

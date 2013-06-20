@@ -21,6 +21,8 @@ gem 'bootstrap-sass', '~> 2.3.1.0'
 gem 'bcrypt-ruby', '~> 3.0.1'
 gem 'will_paginate', '~> 3.0.4'
 gem 'bootstrap-will_paginate', '~> 0.0.9'
+gem 'acts-as-taggable-on', '~> 2.4.1'
+gem 'stringex', '~> 2.0.3'
 
 group :doc do
   gem 'sdoc', '~> 0.3.20', require: false

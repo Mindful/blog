@@ -13,7 +13,7 @@
   </div>
   <div class="abstract" style = "display: table; margin: 0 auto;">
     <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages' %>
+      <%= render 'shared/error_messages', :item => @user %>
 
       <%= f.label :name, :class => "edit-label" %>
       <%= f.text_field :name %>
