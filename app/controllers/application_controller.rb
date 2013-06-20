@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   def require_login
   	unless @login
   	  session[:return_to] = request.url #so that we can come back to it once they log in
-  	  redirect_to login_path, error: "You must be signed in for that."
+  	  redirect_to login_path, :flash => { :error => "You must be signed in for that" } #As stated in the Rails API only :notice and :alert are by default applied as a flash hash value.
   	end
   end
 
