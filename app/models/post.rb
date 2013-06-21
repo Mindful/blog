@@ -2,6 +2,8 @@ class Post < ActiveRecord::Base
 	@@default_title = "Post title"
 	@@default_body = "Post body"
 
+	default_scope order("created_at DESC")
+
 	self.per_page = 10
 
 	acts_as_url :title

@@ -10,6 +10,7 @@ Blog::Application.routes.draw do
   match '/admin/index', to: 'posts#admin_index', via: 'get'
   match '/posts/:id', to: 'posts#show', via: 'get' #these have to be routed to using public_post_path ion the posts_helper, which is really not ideal
   match '/posts', to: redirect('/'), via: 'get'
+  match '/tag/:tag', to: 'posts#search_index', via: 'get'
 
 
   #static pages

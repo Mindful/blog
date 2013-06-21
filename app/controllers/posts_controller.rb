@@ -4,11 +4,17 @@ class PostsController < ApplicationController
 
   def home_index
     #@posts = Post.where(:user_id => current_user.id).paginate(:page => params[:page]) for scoped queries
-    @posts = Post.order("created_at DESC").paginate(:page => params[:page])
+    @posts = Post.paginate(:page => params[:page])
+  end
+
+  def search_index
+    @posts = Post.tagged_with(params[:tag]).paginate(:page => params[:page]) if (params.has_key? :tag)
+    #@shorten_posts = true
+    render 'home_index'
   end
 
   def admin_index #the html/erb for this may eventually be very similar to search results, just with more admin options
-    @posts = Post.order("created_at DESC")
+    @posts = Post.all
   end
 
   def show
@@ -18,7 +24,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
     @post.set_defaults
-    @edit_post_title = true
+    @edit_post = true
     @btn = "Post"
     @date = Time.now
     @date = @date.strftime("%B #{@date.day.ordinalize}, %Y")
@@ -32,7 +38,7 @@ class PostsController < ApplicationController
       flash[:success] = "Post created"
       redirect_to root_url
     else
-      @edit_post_title = true
+      @edit_post = true
       @btn = "Post"
       @date = Time.now
       @date = @date.strftime("%B #{@date.day.ordinalize}, %Y")
@@ -43,7 +49,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find_by_url(params[:id])
-    @edit_post_title = false
+    @edit_post = false
     @btn = "Update"
     @date = @post.created_at.to_s(:pretty)
     @title = "Edit Post"
