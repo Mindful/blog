@@ -32,6 +32,11 @@ class PostsController < ApplicationController
       flash[:success] = "Post created"
       redirect_to root_url
     else
+      @edit_post_title = true
+      @btn = "Post"
+      @date = Time.now
+      @date = @date.strftime("%B #{@date.day.ordinalize}, %Y")
+      @title = "New Post"
       render 'edit'
     end
   end

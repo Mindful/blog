@@ -35,17 +35,17 @@ class Post < ActiveRecord::Base
 	private
 		def tags_and_categories
 	    	for tag in tag_list
-	     	  errors.add(:tag, "too long (maximum is 50 characters)") if tag.length > 50  
+	     	  errors.add(:tag_list, "- tag too long (maximum is 50 characters)") if tag.length > 50  
 	    	end
-	    	errors.add(:base, "Must have exactly one category") if category_list.length != 1
+	    	errors.add(:category_list, "- must have exactly one category") if category_list.length != 1
 	    	for category in category_list
-	     	  errors.add(:categry, "too long (maximum is 50 characters)") if tag.length > 50  
+	     	  errors.add(:category_list, "- category too long (maximum is 50 characters)") if tag.length > 50  
 	    	end
 
 	 	end
 
 		def no_default_values
-			errors.add(:title, 'has default value') if self.title == @@default_title
-			errors.add(:content_markdown, 'has default value') if self.content_markdown == @@default_body
+			errors.add(:title, '- has default value') if self.title == @@default_title
+			errors.add(:content_markdown, '- has default value') if self.content_markdown == @@default_body
 		end
 end
