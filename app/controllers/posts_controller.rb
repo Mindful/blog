@@ -17,8 +17,8 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @post.title = "Post title"
-    @post.content_markdown = "Post body"
+    @post.set_defaults
+    @edit_post_title = true
     @btn = "Post"
     @date = Time.now
     @date = @date.strftime("%B #{@date.day.ordinalize}, %Y")
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = Post.new(create_post_params)
     if @post.save
       flash[:success] = "Post created"
       redirect_to root_url
@@ -38,14 +38,15 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find_by_url(params[:id])
+    @edit_post_title = false
     @btn = "Update"
     @date = @post.created_at.to_s(:pretty)
     @title = "Edit Post"
   end
 
   def update
-    @post = Post.find_by_url(params[:id])
-    if @post.update_attributes(post_params)
+    @post = Post.find_by_url(params[:id]) #well this doesn't really work, given that the id is based on the title
+    if @post.update_attributes(update_post_params)
       flash[:success] = "Post updated"
       redirect_to root_url #maybe we should redirect to the post itself?
     else
@@ -67,7 +68,11 @@ class PostsController < ApplicationController
 
   private
 
-    def post_params #this is basically redundant because it permits all params, but I believe rails will error without it
-      params.require(:post).permit(:title, :content_markdown, :content_html)
+    def create_post_params #this is basically redundant because it permits all params, but I believe rails will error without it
+      params.require(:post).permit(:title, :content_markdown, :content_html, :tag_list, :category_list)
+    end
+
+    def update_post_params
+      params.require(:post).permit(:content_markdown, :content_html, :tag_list)
     end
 end
