@@ -8,7 +8,11 @@ class PostsController < ApplicationController
   end
 
   def search_index
-    @posts = Post.tagged_with(params[:tag]).paginate(:page => params[:page]) if (params.has_key? :tag)
+    if params.has_key? :tag
+      @posts = Post.tagged_with(params[:tag], :on => :tags).paginate(:page => params[:page])
+    elsif params.has_key? :category
+      @posts = Post.tagged_with(params[:category], :on => :category).paginate(:page => params[:page])
+    end
     #@shorten_posts = true
     render 'home_index'
   end

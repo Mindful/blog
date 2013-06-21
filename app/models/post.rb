@@ -10,6 +10,8 @@ class Post < ActiveRecord::Base
 
 	acts_as_taggable_on :tags, :category
 
+	TAG_REGEX = /^(\w| )+$/ #letters, numbers underscores or spaces, but nothing else. also =~ is regex match, ^ is start of string, $ is end of string, and the + is one or more matches
+
 	def to_param
 		url #this just uses stringex/acts_as_url's url for its param
 	end
@@ -17,6 +19,10 @@ class Post < ActiveRecord::Base
 	def set_defaults
 		self.title = @@default_title
 		self.content_markdown = @@default_body
+	end
+
+	def category
+		category_list.first
 	end
 
 
@@ -35,13 +41,16 @@ class Post < ActiveRecord::Base
 	validate :no_default_values
 
 	private
+
 		def tags_and_categories
 	    	for tag in tag_list
-	     	  errors.add(:tag_list, "- tag too long (maximum is 50 characters)") if tag.length > 50  
+	     	  errors.add(:tag_list, "- a tag is too long (maximum is 50 characters)") if tag.length > 50 
+	     	  errors.add(:tag_list, "- a tag is contains invalid characters") unless tag =~ TAG_REGEX 
 	    	end
 	    	errors.add(:category_list, "- must have exactly one category") if category_list.length != 1
 	    	for category in category_list
-	     	  errors.add(:category_list, "- category too long (maximum is 50 characters)") if tag.length > 50  
+	     	  errors.add(:category_list, "- a category is too long (maximum is 50 characters)") if category.length > 50  
+	     	  errors.add(:category_list, "- a category is contains invalid characters") unless category =~ TAG_REGEX
 	    	end
 
 	 	end
