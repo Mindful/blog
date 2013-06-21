@@ -196,11 +196,27 @@ hr.end-post-section
   width:50%;
 }
 
+.post-tags
+{
+    line-height:210%;
+    margin:0px;
+    padding: 0px;
+}
+
 .tag
 {
-  background-color:orange;
-  padding:2px;
+  color:#ffd;
+  background-color:#87adb5;
+  padding:3px;
   border-radius:2px;
+  text-decoration:none;
+}
+
+.tag:hover
+{
+  color:#87adb5;
+  background-color:#ffd;
+  text-decoration:none;
 }
 
 /* sidebar */

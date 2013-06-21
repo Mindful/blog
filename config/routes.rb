@@ -8,9 +8,9 @@ Blog::Application.routes.draw do
   resources :posts, except: [:index, :show], :path => '/admin/posts' 
   root to: 'posts#home_index', via: 'get'
   match '/admin/index', to: 'posts#admin_index', via: 'get'
-  match '/posts/:id', to: 'posts#show', via: 'get' #these have to be routed to using public_post_path ion the posts_helper, which is really not ideal
+  match '/posts/:id', to: 'posts#show', via: 'get', as: 'public_post' #this generates public_post_path
   match '/posts', to: redirect('/'), via: 'get'
-  match '/tag/:tag', to: 'posts#search_index', via: 'get'
+  match '/tag/:tag', to: 'posts#search_index', via: 'get', as: 'tag' #this generates tag_path
 
 
   #static pages

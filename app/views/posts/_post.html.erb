@@ -18,10 +18,7 @@
         <div><%= post.content_html.html_safe %></div>
 	<hr class="end-post-section"/>
     </div>
-  <!-- tags
-    <div class="post-tags">
-        <a href="#" class="tag">Programming</a>
-        <a href="#" class="tag">"Off by one" error</a>
-    </div>
-      -->
+    <p class="post-tags">
+        <%= raw post.tag_list.map { |tag| link_to(tag, tag_path(tag), :class => "tag") }.join('  ') %>
+    </p>
 </div>
