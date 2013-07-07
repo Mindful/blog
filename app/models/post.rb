@@ -1,6 +1,20 @@
 class Post < ActiveRecord::Base
+	include PgSearch
 	@@default_title = "Post title"
 	@@default_body = "Post body"
+
+	#may need a "content searchable" here
+	pg_search_scope :search, 
+    :against => {  
+    :title => 'A',
+    :content_html => 'C'    
+   },       
+    :associated_against => {
+    :tags => [:name],   
+    :category => [:name] 
+   }
+
+
 
 	default_scope order("created_at DESC")
 

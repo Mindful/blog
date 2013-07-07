@@ -5,15 +5,21 @@ class PostsController < ApplicationController
   def home_index
     #@posts = Post.where(:user_id => current_user.id).paginate(:page => params[:page]) for scoped queries
     @posts = Post.paginate(:page => params[:page])
+    @empty_msg = "It seems there are currently no posts."
   end
 
   def search_index
-    if params.has_key? :tag
+    if params.has_key? :search
+      @posts = Post.search(params[:search]).paginate(:page => params[:page])
+      @empty_msg = "Unfortunately, a search for #{params[:search]} has returned no results. Consider trying fewer keywords."
+    elsif params.has_key? :tag
       @posts = Post.tagged_with(params[:tag], :on => :tags).paginate(:page => params[:page])
+      @empty_msg = "It seems #{params[:tag]} is not currently being used as a tag on any posts."
     elsif params.has_key? :category
       @posts = Post.tagged_with(params[:category], :on => :category).paginate(:page => params[:page])
+      @empty_msg = "It seems #{params[:category]} is not currently being used as a category for any posts."
     end
-    #@shorten_posts = true
+    @shorten_posts = true
     render 'home_index'
   end
 

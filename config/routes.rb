@@ -12,6 +12,7 @@ Blog::Application.routes.draw do
   match '/posts', to: redirect('/'), via: 'get'
   match '/tag/:tag', to: 'posts#search_index', via: 'get', as: 'tag' #this generates tag_path
   match '/category/:category', to: 'posts#search_index', via: 'get', as: 'category' #this generates category_path
+  match '/search', to: 'posts#search_index', via: 'get', as: 'search'
 
 
   #static pages
