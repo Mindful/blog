@@ -10,6 +10,16 @@ jQuery(document).ready(function(){
 	$('#post_title').bind('input propertychange', function() {
 	    $('#title').text(this.value);
 	});
+	//Sync category with category field
+	var commaIndex, categoryText;
+	$('#post_category_list').bind('input propertychange', function()
+	{
+		commaIndex = this.value.indexOf(',');
+		if (commaIndex == -1) categoryText = this.value;
+		else categoryText = this.value.substring(0, commaIndex);
+		$('#category').attr('href', '/category/'+categoryText);
+		$('#category').text(categoryText);
+	})
 	//initialize marked, which is required for the editor to work
 	marked.setOptions({
 	  gfm: true,

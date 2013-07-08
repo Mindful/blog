@@ -39,6 +39,10 @@ class Post < ActiveRecord::Base
 		category_list.first
 	end
 
+	def shortened_body
+		#not yet implemented
+	end
+
 
 	validate :tags_and_categories
 

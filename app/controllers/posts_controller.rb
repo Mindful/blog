@@ -14,12 +14,12 @@ class PostsController < ApplicationController
       @empty_msg = "Unfortunately, a search for #{params[:search]} has returned no results. Consider trying fewer keywords."
     elsif params.has_key? :tag
       @posts = Post.tagged_with(params[:tag], :on => :tags).paginate(:page => params[:page])
-      @empty_msg = "It seems #{params[:tag]} is not currently being used as a tag on any posts."
+      @empty_msg = "Unfortunately, it seems #{params[:tag]} is not currently being used as a tag on any posts."
     elsif params.has_key? :category
       @posts = Post.tagged_with(params[:category], :on => :category).paginate(:page => params[:page])
-      @empty_msg = "It seems #{params[:category]} is not currently being used as a category for any posts."
+      @empty_msg = "Unfortunately, it seems #{params[:category]} is not currently being used as a category for any posts."
     end
-    @shorten_posts = true
+    @shorten_posts = true #maxchars 250
     render 'home_index'
   end
 

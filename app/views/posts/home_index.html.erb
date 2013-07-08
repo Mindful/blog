@@ -1,6 +1,11 @@
   <div class="span8 bluebox" id ="post-wrapper">
   	<div id="posts" class="abstract ">
       <%= render @posts %>
+      <% if @posts.empty? %>
+        <div class = "tanbox">
+          <p> <%= @empty_msg %> </p>
+        </div>
+      <% end %>
     </div>
     <%= link_to('Next page', root_path(:page => @posts.next_page), :class => 'posts-text') if @posts.next_page %>
     <%= link_to('Previous page', root_path(:page => @posts.previous_page), :class => 'posts-text') if @posts.previous_page %>

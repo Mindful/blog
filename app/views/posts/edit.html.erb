@@ -30,7 +30,7 @@
 			            <%= image_tag("shimane_flag.gif", :size => "100%;") %>
 			        </div>
 			    <p class="post-title" id="title"><%= @post.title %></p>
-				<p class="post-date"><br><%= @date %></p>
+			    <p class="post-date"><br><%= @post.created_at ? @post.created_at.to_s(:pretty) : Time.zone.now.to_s(:pretty) %>, in <a href="/category/" id="category"></a></p>
 			    </div>
 
 			    <div class="post-body" style="text-align:left;">
