@@ -30,7 +30,13 @@
 			            <%= image_tag("shimane_flag.gif", :size => "100%;") %>
 			        </div>
 			    <p class="post-title" id="title"><%= @post.title %></p>
-			    <p class="post-date"><br><%= @post.created_at ? @post.created_at.to_s(:pretty) : Time.zone.now.to_s(:pretty) %>, in <a href="/category/" id="category"></a></p>
+			    <p class="post-date"><br>
+			    	<% if @post.category %>
+			    	  <%= @post.created_at.to_s(:pretty) %>, in <%= link_to @post.category, category_path(@post.category), :id => "category" %>
+			    	<% else %>
+			    	  <%= @post.created_at ? @post.created_at.to_s(:pretty) : Time.zone.now.to_s(:pretty) %>, in <a href="/category/" id="category"></a>
+			    	<% end %>
+			    </p>
 			    </div>
 
 			    <div class="post-body" style="text-align:left;">
@@ -38,12 +44,9 @@
 			        <div id="wmd-preview"></div>
 				<hr class="end-post-section"/>
 			    </div>
-			  <!-- tags
-			    <div class="post-tags">
-			        <a href="#" class="tag">Programming</a>
-			        <a href="#" class="tag">"Off by one" error</a>
-			    </div>
-			      -->
+			    <p class="post-tags" id="tags">
+			    	<%= raw @post.tag_list.map { |tag| link_to(tag, tag_path(tag), :class => "tag") }.join('  ') if @post.tag_list%>
+			    </p>
 			</div>
 		</div>
 </div>

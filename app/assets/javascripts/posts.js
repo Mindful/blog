@@ -20,6 +20,17 @@ jQuery(document).ready(function(){
 		$('#category').attr('href', '/category/'+categoryText);
 		$('#category').text(categoryText);
 	})
+	//Sync tags with tag field
+	var tagList, tagListField;
+	$('#post_tag_list').bind('input propertychange', function()
+	{
+		tagList = this.value.split(',');
+		tagListField = $('#tags');
+		tagListField.empty();
+		tagList.forEach(function(tag) {
+		    tagListField.append('<a class="tag" href="/tag/'+tag+'">'+tag+'</a>  ');
+		});
+	})
 	//initialize marked, which is required for the editor to work
 	marked.setOptions({
 	  gfm: true,
