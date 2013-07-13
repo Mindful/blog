@@ -16,13 +16,13 @@ class Post < ActiveRecord::Base
 
 
 
-	default_scope order("created_at DESC")
+	default_scope { order("created_at DESC") }
 
 	self.per_page = 10
 
 	acts_as_url :title
 
-	acts_as_taggable_on :tags, :category
+	acts_as_ordered_taggable_on :tags, :category
 
 	TAG_REGEX = /^(\w| )+$/ #letters, numbers underscores or spaces, but nothing else. also =~ is regex match, ^ is start of string, $ is end of string, and the + is one or more matches
 
@@ -56,9 +56,16 @@ class Post < ActiveRecord::Base
 
 	validate :no_default_values
 
-	#before_save :titleize_tags
+	validate :tags_and_categories
+
+	before_save :titleize_tags
 
 	private
+
+		def titleize_tags
+			self.tag_list = self.tag_list.map {|tag| tag.titleize}
+			self.category_list=category_list.map {|category| category.titleize}
+		end
 
 
 		def tags_and_categories

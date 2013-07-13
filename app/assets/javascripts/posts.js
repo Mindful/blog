@@ -5,6 +5,12 @@
 
 
 //sync title input and title on demo post; has to be fired on document ready or it won't find the proper elements
+
+String.prototype.titleize = function() {
+    return this.toLowerCase().replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+};
+
+
 jQuery(document).ready(function(){
 	//Sync title with title field
 	$('#post_title').bind('input propertychange', function() {
@@ -18,7 +24,7 @@ jQuery(document).ready(function(){
 		if (commaIndex == -1) categoryText = this.value;
 		else categoryText = this.value.substring(0, commaIndex);
 		$('#category').attr('href', '/category/'+categoryText);
-		$('#category').text(categoryText);
+		$('#category').text(categoryText.titleize());
 	})
 	//Sync tags with tag field
 	var tagList, tagListField;
@@ -28,6 +34,7 @@ jQuery(document).ready(function(){
 		tagListField = $('#tags');
 		tagListField.empty();
 		tagList.forEach(function(tag) {
+			tag = tag.titleize();
 		    tagListField.append('<a class="tag" href="/tag/'+tag+'">'+tag+'</a>  ');
 		});
 	})
