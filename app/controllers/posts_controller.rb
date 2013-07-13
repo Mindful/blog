@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :require_login, except: [:home_index, :show] 
+  before_action :require_login, except: [:home_index, :search_index, :show] 
 
   def home_index
     #@posts = Post.where(:user_id => current_user.id).paginate(:page => params[:page]) for scoped queries

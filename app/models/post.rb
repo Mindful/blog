@@ -39,12 +39,10 @@ class Post < ActiveRecord::Base
 		category_list.first
 	end
 
-	def shortened_body
-		#not yet implemented
+	def shortened_content_html
+		Truncato.truncate content_html, max_length: 250
 	end
 
-
-	validate :tags_and_categories
 
 	#validates :category_list, length: { minimum:1, maximum:1 } #I don't even think this works; it's checking characters, not list length (though perhaps it would learn better later?)
 	#TODO: WHEN WE DO THIS, GO INTO THE CONTROLLER AND ADD CATEGORIES TO POST PARAMETERS OR ELSE  IT WON'T WORKY GUD
@@ -58,7 +56,10 @@ class Post < ActiveRecord::Base
 
 	validate :no_default_values
 
+	before_save :titleize_tags
+
 	private
+
 
 		def tags_and_categories
 	    	for tag in tag_list

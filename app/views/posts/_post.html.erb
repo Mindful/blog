@@ -15,7 +15,11 @@
 
     <div class="post-body" style="text-align:left;">
         <hr class="end-post-section"/>
+        <% if @shorten_posts %>
+        <div><%= post.shortened_content_html.html_safe%></div>
+        <% else %>
         <div><%= post.content_html.html_safe %></div>
+        <% end %>
 	<hr class="end-post-section"/>
     </div>
     <p class="post-tags">
