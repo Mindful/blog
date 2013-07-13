@@ -56,7 +56,7 @@ class Post < ActiveRecord::Base
 
 	validate :no_default_values
 
-	before_save :titleize_tags
+	#before_save :titleize_tags
 
 	private
 

@@ -32,7 +32,7 @@
 			    <p class="post-title" id="title"><%= @post.title %></p>
 			    <p class="post-date"><br>
 			    	<% if @post.category %>
-			    	  <%= @post.created_at.to_s(:pretty) %>, in <%= link_to @post.category, category_path(@post.category), :id => "category" %>
+			    	  <%= @post.created_at ? @post.created_at.to_s(:pretty) : Time.zone.now.to_s(:pretty) %>, in <%= link_to @post.category, category_path(@post.category), :id => "category" %>
 			    	<% else %>
 			    	  <%= @post.created_at ? @post.created_at.to_s(:pretty) : Time.zone.now.to_s(:pretty) %>, in <a href="/category/" id="category"></a>
 			    	<% end %>
