@@ -1,0 +1,14 @@
+<% provide(:title, 'Category Index') %>
+<div class="bluebox info-page">
+<h3>Category Index</h3>
+<ul class="post-list">
+  <% @categories.each do |category| %>
+    <li class="tanbox" data-url="<%= category.name %>">
+        <%= link_to category.name, category_path(category), :style => "color:55A" %>
+       <div class="abstract" style="display:inline; float:right;">
+        <%= link_to 'Delete', categories_path(category), method: :delete, :remote => true, :class => "admin-button", data: { confirm: "You sure?" } %> 
+       </div>
+    </li>
+  <% end %>
+</ul>
+</div>

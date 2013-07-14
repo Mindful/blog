@@ -16,4 +16,7 @@
 	  fffffffffffffffffffffffffff
 	  ffffffffffffffffff
 	</div>
+	<% ActsAsTaggableOn::Tagging.find_all_by_context("tags").each do |tagging| %>
+  	  <%= tagging.tag %><br></br>
+	<% end %>
 </div>
