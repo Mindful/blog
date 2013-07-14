@@ -5,9 +5,9 @@ class Category < ActiveRecord::Base
 
   before_validation :associate_tag #before_save is after validation
 
-  before_destroy :can_destroy? #if can_destroy? returls false, the model is not destroyed
+  before_destroy :can_destroy? #if can_destroy? returns false, the model is not destroyed
 
-  validates :title, presence: true,
+  validates :name, presence: true,
 	uniqueness: { case_sensitive: false },
 	length: { maximum: 50 }
 
@@ -17,6 +17,10 @@ class Category < ActiveRecord::Base
 
   def can_destroy?
   	posts.length == 0
+  end
+
+  def to_param
+  	self.name
   end
 
   private

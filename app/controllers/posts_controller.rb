@@ -23,10 +23,6 @@ class PostsController < ApplicationController
     render 'home_index'
   end
 
-  def admin_index #the html/erb for this may eventually be very similar to search results, just with more admin options
-    @posts = Post.all
-  end
-
   def show
     @post = Post.find_by(url: params[:id])
   end
