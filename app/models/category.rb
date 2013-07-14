@@ -5,9 +5,19 @@ class Category < ActiveRecord::Base
 
   before_validation :associate_tag #before_save is after validation
 
+  before_destroy :can_destroy? #if can_destroy? returls false, the model is not destroyed
+
   validates :title, presence: true,
 	uniqueness: { case_sensitive: false },
 	length: { maximum: 50 }
+
+  def posts
+  	Post.tagged_with(name, :on => :category)
+  end
+
+  def can_destroy?
+  	posts.length == 0
+  end
 
   private
   	def associate_tag
