@@ -12,6 +12,11 @@ String.prototype.titleize = function() {
 
 
 jQuery(document).ready(function(){
+	//Titleize the inputs
+	var tagElement = $('#post_tag_list');
+	tagElement.val(tagElement.val().titleize());
+	tagElement = $('#post_category_list');
+	tagElement.val(tagElement.val().titleize());
 	//Sync title with title field
 	$('#post_title').bind('input propertychange', function() {
 	    $('#title').text(this.value);
