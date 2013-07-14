@@ -58,15 +58,7 @@ class Post < ActiveRecord::Base
 
 	validate :tags_and_categories
 
-	before_save :titleize_tags
-
 	private
-
-		def titleize_tags
-			self.tag_list = self.tag_list.map {|tag| tag.titleize}
-			self.category_list=category_list.map {|category| category.titleize}
-		end
-
 
 		def tags_and_categories
 	    	for tag in tag_list

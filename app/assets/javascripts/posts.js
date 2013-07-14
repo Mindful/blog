@@ -34,8 +34,7 @@ jQuery(document).ready(function(){
 		tagListField = $('#tags');
 		tagListField.empty();
 		tagList.forEach(function(tag) {
-			tag = tag.titleize();
-		    tagListField.append('<a class="tag" href="/tag/'+tag+'">'+tag+'</a>  ');
+		    tagListField.append('<a class="tag" href="/tag/'+tag+'">'+tag.titleize()+'</a>  ');
 		});
 	})
 	//initialize marked, which is required for the editor to work
