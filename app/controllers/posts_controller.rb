@@ -6,6 +6,7 @@ class PostsController < ApplicationController
     #@posts = Post.where(:user_id => current_user.id).paginate(:page => params[:page]) for scoped queries
     @posts = Post.paginate(:page => params[:page])
     @empty_msg = "It seems there are currently no posts."
+    render 'index'
   end
 
   def search_index
@@ -20,7 +21,7 @@ class PostsController < ApplicationController
       @empty_msg = "Unfortunately, it seems \"#{params[:category]}\" is not currently being used as a category for any posts."
     end
     @shorten_posts = true #maxchars 250
-    render 'home_index'
+    render 'index'
   end
 
   def show

@@ -8,15 +8,9 @@
 	<% end %>
 	</div>
 	<div class="sidebar tanbox">
-	  stuffffffffffffffffffffffff
-	  fffffffffffffffffffffffffff
-	  fffffffffffffffffffffffffff
-	  fffffffffffffffffffffffffff
-	  fffffffffffffffffffffffffff
-	  fffffffffffffffffffffffffff
-	  ffffffffffffffffff
-	</div>
-	<% ActsAsTaggableOn::Tagging.find_all_by_context("tags").each do |tagging| %>
-  	  <%= tagging.tag %><br></br>
+	<b>Categories:</b></br>
+	<% Category.all.each do |category| %>
+		<%= link_to category.name, search_category_path(category) %></br>
 	<% end %>
+	</div>
 </div>
