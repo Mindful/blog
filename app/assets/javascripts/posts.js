@@ -19,22 +19,19 @@ jQuery(document).ready(function(){
 	//Titleize the inputs
 	var tagElement = $('#post_tag_list');
 	tagElement.val(tagElement.val().titleize());
-	tagElement = $('#post_category_list');
-	tagElement.val(tagElement.val().titleize());
 	//Sync title with title field
 	$('#post_title').bind('input propertychange', function() {
 	    $('#title').text(this.value);
 	});
 	//Sync category with category field
-	var commaIndex, categoryText;
-	$('#post_category_list').bind('input propertychange', function()
+	var categoryText;
+	$('#post_category_list').change(function()
 	{
-		commaIndex = this.value.indexOf(',');
-		if (commaIndex == -1) categoryText = this.value;
-		else categoryText = this.value.substring(0, commaIndex);
+		categoryText = this.value;
 		$('#category').attr('href', '/category/'+categoryText.categoryUrl());
 		$('#category').text(categoryText.titleize());
 	})
+	$('#post_category_list').change(); //Set initial value
 	//Sync tags with tag field
 	var tagList, tagListField, tagHash, tagUrl;
 	$('#post_tag_list').bind('input propertychange', function()
@@ -66,3 +63,17 @@ jQuery(document).ready(function(){
 	editor = new Markdown.Editor('#post_content_html');
     return editor.run();
  });
+
+	//tagElement = $('#post_category_list');
+	//tagElement.val(tagElement.val().titleize());
+
+	//Old comment sync for text box
+	//var commaIndex, categoryText;
+	//$('#post_category_list').bind('input propertychange', function()
+	//{
+	//	commaIndex = this.value.indexOf(',');
+	//	if (commaIndex == -1) categoryText = this.value;
+	//	else categoryText = this.value.substring(0, commaIndex);
+	//	$('#category').attr('href', '/category/'+categoryText.categoryUrl());
+	//	$('#category').text(categoryText.titleize());
+	//})

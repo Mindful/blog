@@ -29,6 +29,7 @@ class PostsController < ApplicationController
   end
 
   def new
+    flash.now[:error] = "You cannot create a post until you have created at least one #{view_context.link_to('category', admin_index_path)}".html_safe if Category.count == 0
     @post = Post.new
     @post.set_defaults
     @edit_post = true
@@ -55,6 +56,7 @@ class PostsController < ApplicationController
   end
 
   def edit
+    flash.now[:error] = "You cannot create a post until you have created at least one #{view_context.link_to('category', admin_index)}".html_safe if Category.count == 0
     @post = Post.find_by(url: params[:id])
     @edit_post = false
     @btn = "Update"
@@ -91,6 +93,6 @@ class PostsController < ApplicationController
     end
 
     def update_post_params
-      params.require(:post).permit(:content_markdown, :content_html, :tag_list)
+      params.require(:post).permit(:content_markdown, :content_html, :tag_list, :category_list)
     end
 end
