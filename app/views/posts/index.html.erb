@@ -7,8 +7,8 @@
         </div>
       <% end %>
     </div>
-    <%= link_to('Next page', root_path(:page => @posts.next_page), :class => 'posts-text') if @posts.next_page %>
-    <%= link_to('Previous page', root_path(:page => @posts.previous_page), :class => 'posts-text') if @posts.previous_page %>
+    <%= link_to('Previous page', post_previous_page_path(@posts), :class => 'posts-text') if @posts.previous_page %>
+    <%= link_to('Next page', post_next_page_path(@posts), :class => 'posts-text') if @posts.next_page %>
   </div>
   <!--end posts-->
  
@@ -21,7 +21,7 @@
   <% if @posts.next_page %>
     $('#post-wrapper').append('<p id="more-posts">Loading more posts...</p>');
     var loader = $('.post-head:eq(-2),#more-posts');
-    loader.attr('data-posts', '<%= root_path page: @posts.next_page %>'); 
+    loader.attr('data-posts', '<%= post_next_page_path(@posts) %>'); 
     loader.on('inview', function(e, visible) { 
         if (!visible) {
           return;
