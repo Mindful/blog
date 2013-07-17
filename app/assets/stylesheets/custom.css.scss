@@ -1,4 +1,5 @@
 @import "bootstrap";
+@import "bootstrap-responsive";
 @import "pagedown_bootstrap"; /*this has to come second for our marked.editor to look pretty*/
 
 /* universal */
@@ -121,6 +122,11 @@ header
   padding:2% 0;
 }
 
+#post-wrapper-preview
+{
+  padding:2% 0;
+}
+
 div.post
 {
   padding:2%;
@@ -206,7 +212,7 @@ hr.end-post-section
 .tag
 {
   color:#ffd;
-  background-color:#87adb5;
+  background-color:#110D9E;
   padding:3px;
   border-radius:2px;
   text-decoration:none;
@@ -214,9 +220,17 @@ hr.end-post-section
 
 .tag:hover
 {
-  color:#87adb5;
+  color:#87adb5z;
   background-color:#ffd;
   text-decoration:none;
+}
+
+.submit-btn
+{
+  @extend .btn;
+  width:80%;
+  margin-left:10%;
+  font-size: 20px;
 }
 
 /* sidebar */
