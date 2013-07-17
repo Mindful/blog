@@ -22,7 +22,8 @@
         <%= f.text_area :content_markdown, :class => "wmd-input", :id => "wmd-input" %>
     </div>
     <div class="bluebox content span3" style = "padding: 2% 0;">
-        	<%= f.submit @btn, :class => "submit-btn", :value => "Submit post" %>
+        	<%= f.submit @btn, :class => "submit-btn", :value => "Submit post", :style => "width:80%" %>
+        	<input type="button" class="submit-btn" value="Save as draft" style="width:80%;margin-top:2%;"/>
     </div>
   <% end %>
      	<div class="bluebox span8 offset1" id ="post-wrapper-preview">
