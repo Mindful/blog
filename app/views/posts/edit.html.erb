@@ -17,7 +17,7 @@
 		<%= f.label :category_list, "Category", :class =>"edit-label", :style => "float:right;"%>
 		<label for="wmd-input" class="edit-label">Body</label>
         <div id="wmd-button-bar">
-      	  <%= f.text_field :category_list, :style => "float:right;", :disabled => !@edit_post  %>
+      	  <%= f.select :category_list, options_for_select(category_select_options), {}, {:style => "float:right;" }%>
         </div>
         <%= f.text_area :content_markdown, :class => "wmd-input", :id => "wmd-input" %>
     </div>
@@ -34,7 +34,7 @@
 			    <p class="post-title" id="title"><%= @post.title %></p>
 			    <p class="post-date"><br>
 			    	<% if @post.category %>
-			    	  <%= @post.created_at.to_s(:pretty) %>, in <%= link_to @post.category, category_path(@post.category), :id => "category" %>
+			    	  <%= @post.created_at ? @post.created_at.to_s(:pretty) : Time.zone.now.to_s(:pretty) %>, in <%= link_to @post.category.titleize, search_category_path(@post.category), :id => "category" %>
 			    	<% else %>
 			    	  <%= @post.created_at ? @post.created_at.to_s(:pretty) : Time.zone.now.to_s(:pretty) %>, in <a href="/category/" id="category"></a>
 			    	<% end %>
@@ -47,7 +47,7 @@
 				<hr class="end-post-section"/>
 			    </div>
 			    <p class="post-tags" id="tags">
-			    	<%= raw @post.tag_list.map { |tag| link_to(tag, tag_path(tag), :class => "tag") }.join('  ') if @post.tag_list%>
+			    	<%= raw @post.tag_list.map { |tag| link_to(tag.titleize, search_tag_path(tag), :class => "tag") }.join('  ') if @post.tag_list%>
 			    </p>
 			</div>
 		</div>

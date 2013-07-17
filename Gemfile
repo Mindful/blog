@@ -3,6 +3,7 @@ ruby '2.0.0'
 
 gem 'rails', '4.0.0.rc1'
 
+gem 'truncato', '~> 0.7.5'
 gem 'pg', '~> 0.15.1'
 gem 'pg_search', '~> 0.7.0'
 gem 'sass-rails', '~> 4.0.0.rc1'

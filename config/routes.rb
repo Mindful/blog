@@ -1,17 +1,21 @@
 Blog::Application.routes.draw do
 
 
+
+  resource :categories, only: [:create], :path => '/admin/categories'
+  match '/admin/categories/:id', to: 'categories#destroy', via: 'delete', as: 'destroy_category'
+  #match ''
   #resources is jsut a really fast way to declare a bunch of routes for things
   resources :users, only: [:edit, :update], :path => '/admin/users' #because the user functions are all admin only, we change the preface to include
 
   #posts
   resources :posts, except: [:index, :show], :path => '/admin/posts' 
   root to: 'posts#home_index', via: 'get'
-  match '/admin/index', to: 'posts#admin_index', via: 'get'
+  match '/admin/index', to: 'categories#index', via: 'get'
   match '/posts/:id', to: 'posts#show', via: 'get', as: 'public_post' #this generates public_post_path
   match '/posts', to: redirect('/'), via: 'get'
-  match '/tag/:tag', to: 'posts#search_index', via: 'get', as: 'tag' #this generates tag_path
-  match '/category/:category', to: 'posts#search_index', via: 'get', as: 'category' #this generates category_path
+  match '/tag/:tag', to: 'posts#search_index', via: 'get', as: 'search_tag'
+  match '/category/:category', to: 'posts#search_index', via: 'get', as: 'search_category'
   match '/search', to: 'posts#search_index', via: 'get', as: 'search'
 
 

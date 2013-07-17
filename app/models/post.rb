@@ -16,13 +16,13 @@ class Post < ActiveRecord::Base
 
 
 
-	default_scope order("created_at DESC")
+	default_scope { order("created_at DESC") }
 
 	self.per_page = 10
 
 	acts_as_url :title
 
-	acts_as_taggable_on :tags, :category
+	acts_as_ordered_taggable_on :tags, :category
 
 	TAG_REGEX = /^(\w| )+$/ #letters, numbers underscores or spaces, but nothing else. also =~ is regex match, ^ is start of string, $ is end of string, and the + is one or more matches
 
@@ -39,12 +39,10 @@ class Post < ActiveRecord::Base
 		category_list.first
 	end
 
-	def shortened_body
-		#not yet implemented
+	def shortened_content_html
+		Truncato.truncate content_html, max_length: 250
 	end
 
-
-	validate :tags_and_categories
 
 	#validates :category_list, length: { minimum:1, maximum:1 } #I don't even think this works; it's checking characters, not list length (though perhaps it would learn better later?)
 	#TODO: WHEN WE DO THIS, GO INTO THE CONTROLLER AND ADD CATEGORIES TO POST PARAMETERS OR ELSE  IT WON'T WORKY GUD
@@ -57,6 +55,8 @@ class Post < ActiveRecord::Base
 	validates :content_html, presence: true
 
 	validate :no_default_values
+
+	validate :tags_and_categories
 
 	private
 

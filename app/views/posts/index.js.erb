@@ -9,7 +9,7 @@ $('#posts').append('<%= escape_javascript render @posts %>');
 
 <% if @posts.next_page %>
   var loader = $('.post-head:eq(-2),#more-posts');
-  loader.attr('data-posts', '<%= root_path page: @posts.next_page %>'); 
+  loader.attr('data-posts', '<%= post_next_page_path(@posts) %>'); 
   loader.on('inview', function(e, visible) { 
       if (!visible) {
         return;

@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
 
-  before_action :require_login, except: [:home_index, :show] 
+  before_action :require_login, except: [:home_index, :search_index, :show] 
 
   def home_index
     #@posts = Post.where(:user_id => current_user.id).paginate(:page => params[:page]) for scoped queries
     @posts = Post.paginate(:page => params[:page])
     @empty_msg = "It seems there are currently no posts."
+    render 'index'
   end
 
   def search_index
@@ -20,18 +21,15 @@ class PostsController < ApplicationController
       @empty_msg = "Unfortunately, it seems \"#{params[:category]}\" is not currently being used as a category for any posts."
     end
     @shorten_posts = true #maxchars 250
-    render 'home_index'
-  end
-
-  def admin_index #the html/erb for this may eventually be very similar to search results, just with more admin options
-    @posts = Post.all
+    render 'index'
   end
 
   def show
-    @post = Post.find_by_url(params[:id])
+    @post = Post.find_by(url: params[:id])
   end
 
   def new
+    flash.now[:error] = "You cannot create a post until you have created at least one #{view_context.link_to('category', admin_index_path)}".html_safe if Category.count == 0
     @post = Post.new
     @post.set_defaults
     @edit_post = true
@@ -58,7 +56,8 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find_by_url(params[:id])
+    flash.now[:error] = "You cannot create a post until you have created at least one #{view_context.link_to('category', admin_index)}".html_safe if Category.count == 0
+    @post = Post.find_by(url: params[:id])
     @edit_post = false
     @btn = "Update"
     @date = @post.created_at.to_s(:pretty)
@@ -66,7 +65,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find_by_url(params[:id]) #well this doesn't really work, given that the id is based on the title
+    @post = Post.find_by(url: params[:id]) #well this doesn't really work, given that the id is based on the title
     if @post.update_attributes(update_post_params)
       flash[:success] = "Post updated"
       redirect_to root_url #maybe we should redirect to the post itself?
@@ -76,7 +75,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    Post.find_by_url(params[:id]).destroy
+    Post.find_by(url: params[:id]).destroy
     if request.referrer == admin_index_url
       render :js => "$(\"li[data-url='#{params[:id].to_s}']\").remove();" #stringex's acts_as_url is making our id param into a url, so we look for that
       #TODO: alert that the thing has been deleted.
@@ -94,6 +93,6 @@ class PostsController < ApplicationController
     end
 
     def update_post_params
-      params.require(:post).permit(:content_markdown, :content_html, :tag_list)
+      params.require(:post).permit(:content_markdown, :content_html, :tag_list, :category_list)
     end
 end

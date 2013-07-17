@@ -1,0 +1,39 @@
+<% provide(:title, 'Category Index') %>
+<div class="bluebox info-page">
+<h3>Index</h3>
+<ul class="post-list">
+  <% @categories.each do |category| %>
+    <li data-url="<%= category.name %>">
+        <%= link_to category.name.titleize, search_category_path(category), :style => "color:55A" %>
+       <div class="abstract" style="display:inline; float:right;">
+       	<% if category.can_destroy? %>
+          <%= link_to 'Delete Category', destroy_category_path(category), method: :delete, :class => "admin-button", data: { confirm: "You sure?" } %> 
+        <% else %>
+          (Category must be empty to delete)
+        <% end %>
+       </div>
+    </li>
+
+		    <ul class="post-list">
+		  <% category.posts.each do |post| %>
+		    <li class="tanbox" data-url="<%= post.url %>">
+		        <%= link_to post.title, public_post_path(post), :style => "color:55A" %>
+		       <div class="abstract" style="display:inline; float:right;">
+		        <%= link_to 'Delete', post, method: :delete, :remote => true, :class => "admin-button", data: { confirm: "You sure?" } %> 
+			    <%= link_to 'Edit', edit_post_path(post), :class => "admin-button" %>
+		       </div>
+		    </li>
+		  <% end %>
+		</ul>
+
+  <% end %>
+  <div class="tanbox info-page">
+  <%= form_for(@category) do |f| %>
+    <%= render 'layouts/error_messages', :item => @category %>
+    <%= f.label :name %>
+      <%= f.text_field :name %><br/>
+      <%= f.submit 'Add Category', :class => "btn span2" %>
+  <% end %>
+  </div>
+</ul>
+</div>
