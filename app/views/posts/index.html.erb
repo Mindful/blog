@@ -8,26 +8,33 @@
       <% end %>
     </div>
     <div id="paginate-wrapper" style="text-align: center">    
-      <%= will_paginate @posts %>
+      <%= will_paginate @posts, id: "will-paginate" %>
     </div>
   </div>
   <!--end posts-->
  
  <%= render 'layouts/sidebar' %>
- <!--this adds an inview event (which fires on in or out of view, hence the needed if (!visible)) to the get more posts link. also changes the link at the bottom to be autloady if we have Javascript. the $(function()) is a way of using jquery to bind a function to be executed only once loading finishes. the selector including a comma adds our inview event to the
- loading posts texts AND to the second to last post-->  
- <script>
-  $('#paginate-wrapper').remove();
-
+  
+ <!-- bad practice to have this in the page, I know, but importing it as a script was causing back-button related quirks -->
+ <script> 
+  $('#will-paginate').hide();
   <% if @posts.next_page %>
-    $('#post-wrapper').append('<p id="more-posts">Loading more posts...</p>');
-    var loader = $('.post-head:eq(-2),#more-posts');
+
+  var d = document, w = window, documentElement = d.documentElement, loader = $('.post-head:eq(-2)'), loading = false;
+  
+  function getViewportOffsetTop() {
+    return w.pageYOffset || documentElement.scrollTop || d.body.scrollTop;
+  }
+
+  function belowLoader() {
+    if ((getViewportOffsetTop() >= loader.offset().top) && !loading) { //this fires as soon as the viewport is below the top of the loader element
+      loading = true;
+      return $.getScript(loader.attr('data-posts'));
+    }
+  }
+
+    $('#paginate-wrapper').append('<p id="more-posts" style="color:#ffd; font-size:18px;">Loading more posts...</p>');
     loader.attr('data-posts', '<%= post_next_page_path(@posts) %>'); 
-    loader.on('inview', function(e, visible) { 
-        if (!visible) {
-          return;
-        }
-        return $.getScript($(this).attr('data-posts'));
-    });
+    var loaderNumber = self.setInterval(belowLoader, 250);
   <% end %>
 </script>

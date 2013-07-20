@@ -1,22 +1,13 @@
 //I believe the reason this needs its own files is so that Ruby adjust the ERB here with every getScript call, and so it can be invoked more than once
 //Also, I guess single quotes won't stop ERB from parsing, and are required for the javascript arguments
 
-$('.post-head:eq(-2)').unbind('inview'); //second to last post
-
-
 $('#posts').append('<%= escape_javascript render @posts %>'); 
 
 
 <% if @posts.next_page %>
-  var loader = $('.post-head:eq(-2),#more-posts');
-  loader.attr('data-posts', '<%= post_next_page_path(@posts) %>'); 
-  loader.on('inview', function(e, visible) { 
-      if (!visible) {
-        return;
-      }
-      return $.getScript($(this).attr('data-posts'));
-  });
+  loader = $('.post-head:eq(-2)'), loading = false;
+  loader.attr('data-posts', '<%= post_next_page_path(@posts) %>');
   <% else %> 
   $('#more-posts').remove();
-  $('.post-head:eq(-2)').unbind('inview'); //second to last post
+  clearInterval(loaderNumber);
 <% end %>
