@@ -3,13 +3,15 @@ class Category < ActiveRecord::Base
 
   #all tags are forced lowercase before saving, so we should search for them by lowercase
 
-  before_validation :associate_tag #before_save is after validation
+  before_validation :downcase_and_associate_tag #before_save is after validation
 
   before_destroy :can_destroy? #if can_destroy? returns false, the model is not destroyed
 
   validates :name, presence: true,
 	uniqueness: { case_sensitive: false },
 	length: { maximum: 50 }
+
+  validates_presence_of :tag
 
   def posts
   	Post.tagged_with(name, :on => :category)
@@ -24,7 +26,8 @@ class Category < ActiveRecord::Base
   end
 
   private
-  	def associate_tag
-  		self.tag = ActsAsTaggableOn::Tag.find_or_create_by(name: name.downcase)
+  	def downcase_and_associate_tag
+      self.name = self.name.downcase
+  		self.tag = ActsAsTaggableOn::Tag.find_or_create_by(name: name)
   	end
 end

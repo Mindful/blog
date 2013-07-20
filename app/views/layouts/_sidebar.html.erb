@@ -8,7 +8,7 @@
 	<div class="sidebar tanbox" id="categories">
 	<h3>Categories:</h3>
 	<% Category.all.each do |category| %>
-		<%= link_to category.name, search_category_path(category) %><br/>
+		<%= link_to category.name.titleize, search_category_path(category) %><br/>
 	<% end %>
 	</div>
 </div>
