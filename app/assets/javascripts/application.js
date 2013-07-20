@@ -15,5 +15,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require jquery.inview.min.js
 //= require bootstrap
