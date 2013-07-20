@@ -9,5 +9,5 @@ $('#posts').append('<%= escape_javascript render @posts %>');
   loader.attr('data-posts', '<%= post_next_page_path(@posts) %>');
   <% else %> 
   $('#more-posts').remove();
-  clearInterval(loaderNumber);
+  self.clearInterval(loaderNumber);
 <% end %>
