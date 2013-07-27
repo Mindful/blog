@@ -88,7 +88,7 @@ class PostsController < ApplicationController
 
   private
 
-    def create_post_params #this is basically redundant because it permits all params, but I believe rails will error without it
+    def create_post_params #this is basically redundant because it permits all params, but I believe rails requires it
       params.require(:post).permit(:title, :content_markdown, :content_html, :tag_list, :category_list)
     end
 

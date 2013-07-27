@@ -1,11 +1,16 @@
 Blog::Application.routes.draw do
 
 
+  #subscription
+  match '/subscribe/', to: 'subscriptions#create', via: 'post', as: 'subscribe'
+  match '/subscribe/', to: 'subscriptions#destroy', via: 'delete'
+  match '/subscribe_init', to: 'subscriptions#init', via: 'post', as: 'subscribe_init'
 
+  #categories
   resource :categories, only: [:create], :path => '/admin/categories'
   match '/admin/categories/:id', to: 'categories#destroy', via: 'delete', as: 'destroy_category'
-  #match ''
-  #resources is jsut a really fast way to declare a bunch of routes for things
+ 
+  #users
   resources :users, only: [:edit, :update], :path => '/admin/users' #because the user functions are all admin only, we change the preface to include
 
   #posts

@@ -1,0 +1,22 @@
+// Place all the styles related to the Subscriptions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Note that while it looks like these could be IDs, they can't. They have to be classes for javascript reasons.
+
+.subscribed{
+    position: fixed;
+    right: 50px;
+    bottom: 0px;
+    z-index: 10;
+    display: none; 
+    width: 175px;
+    text-align: center;
+    padding:15px;
+    padding-bottom:50px;
+}
+
+.subscribed-inner{
+	display: table;
+    margin: 0 auto;
+}
