@@ -10,7 +10,7 @@ class SubscriptionsController < ApplicationController
 			#Use JS to make something pretty and clear out the subscribe box of text
 			#Also, confirmation email
 		else
-			#detect error type. if empty, do nothing. if invalid, say invalid. if duplicate or exception, say that
+			#detect error type. if empty, do nothing. if invalid, say invalid. if duplicate or exception, say it
 			subscribedWindow "could not subscribe you. already subscribed?"
 		end
 	end
