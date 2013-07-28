@@ -45,7 +45,7 @@
   <% end %>
 
  //subscriptions
-   function openSubscribedWindow(text){
+   function openSubscribedWindow(text, clear){
     var subscribed = $('#subscribed')
     $('#subscribe-button').prop('disabled', true);
     if (subscribed.length > 0)
@@ -64,7 +64,7 @@
         , 200)
     }
     $('#display').append('<div id="subscribed" class="subscribed bluebox"><div id="subscribed-inner" class="tanbox"><p id="subscribed-text"></p></div></div>');
-    $('#subscribe').val("")
+    if (clear) $('#subscribe').val("");
     $("#subscribed-text").text(text)
     $("#subscribed").slideDown()
   }

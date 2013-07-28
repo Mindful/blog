@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130721023112) do
+ActiveRecord::Schema.define(version: 20130728182952) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -38,8 +38,11 @@ ActiveRecord::Schema.define(version: 20130721023112) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "confirm_token"
+    t.boolean  "active"
   end
 
+  add_index "subscriptions", ["confirm_token"], name: "index_subscriptions_on_confirm_token", using: :btree
   add_index "subscriptions", ["email"], name: "index_subscriptions_on_email", unique: true, using: :btree
 
   create_table "taggings", force: true do |t|
