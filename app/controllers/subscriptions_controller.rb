@@ -22,15 +22,15 @@ class SubscriptionsController < ApplicationController
 		end
 
 		if (@subscription.save rescue false) #Rescue catches database exception
-			subscribed_window "Thanks for subscribing! An activation email has been sent to #{email}."
-			activation_email(@subscription)
+			subscribed_window "Thanks for subscribing! An activation email has been sent to #{email}." #not working
+			activation_email(@subscription, request)
 		else
 			subscribed_window "Apologies, but we were unable to subscribe you."
 		end
 	end
 
 	def activate #accessed through confirmation page
-		@subscription = Subscription.find_by(confirm_token: params[:confirm_token]))
+		@subscription = Subscription.find_by(confirm_token: params[:confirm_token])
 		unless @subscription
 			redirect_to root_path 
 			return
@@ -51,7 +51,8 @@ class SubscriptionsController < ApplicationController
 	end
 
 	private
-	  def activation_email(subscription)
+	  def activation_email(subscription, request)
+	  	Mailer.subscription_activation(subscription, request).deliver
 	  end
 
 	  def subscribed_window(text, clear = true, resend = false)
