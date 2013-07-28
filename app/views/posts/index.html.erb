@@ -45,7 +45,7 @@
   <% end %>
 
  //subscriptions
-   function openSubscribedWindow(text, clear){
+   function openSubscribedWindow(html, text, clear){
     var subscribed = $('#subscribed')
     $('#subscribe-button').prop('disabled', true);
     if (subscribed.length > 0)
@@ -63,13 +63,19 @@
         $('#subscribe-button').prop('disabled', false)}
         , 200)
     }
-    $('#display').append('<div id="subscribed" class="subscribed bluebox"><div id="subscribed-inner" class="tanbox"><p id="subscribed-text"></p></div></div>');
+    $('#display').append(html);
+    $("#subscribed-text").text(text);
     if (clear) $('#subscribe').val("");
-    $("#subscribed-text").text(text)
     $("#subscribed").slideDown()
   }
   function closeSubscribedWindow(){
-    $("#subscribed").slideUp()
+    var subscribed = $('#subscribed')
+    subscribed.slideUp(200, function(){
+      $('#subscribe-button').prop('disabled', false); //problem when this is run the very first time
+      this.remove()
+    });
+    subscribed.removeAttr('id');
+    $("#subscribed-text").removeAttr('id');
   }
 </script>
 

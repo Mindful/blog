@@ -42,9 +42,10 @@ class SubscriptionsController < ApplicationController
 	private
 	  def activation_email(subscription)
 	  end
-	  
-	  def subscribed_window(text, clear = true)
-	  	render :js => "openSubscribedWindow('#{text}', #{clear});"
+
+	  def subscribed_window(text, clear = true, resend = false)
+	  	@resend = resend
+	  	render :js => "openSubscribedWindow('#{j(render_to_string('subscribed', :layout => nil))}', '#{text}', #{clear});"
 	  end
 
 	  def duplicate?(email)
@@ -53,7 +54,7 @@ class SubscriptionsController < ApplicationController
 	  		subscribed_window "The address #{email} is already subscribed.", false
 	  		true
 	  	elsif subscription
-	  		subscribed_window "The subscription for #{email} is pending. Check for an activation email."
+	  		subscribed_window "The subscription for #{email} is pending. Check for an activation email.", false, true
 	  		true
 	  	else
 	  		false

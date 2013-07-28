@@ -18,5 +18,25 @@
 
 .subscribed-inner{
 	display: table;
-    margin: 0 auto;
+    margin: 5 auto;
+}
+
+a.boxclose{
+    text-decoration:none;
+    float:right;
+    margin-top:-20px;
+    margin-right:-20px;
+    cursor:pointer;
+    color: #DDDDDD;
+    border-radius: 30px;
+    background: #DDDDDD;
+    font-size: 31px;
+    display: inline-block;
+    line-height: 0px;
+    padding: 11px 3px;
+    z-index: 11;       
+}
+.boxclose:before {
+    content: "×";
+    color: #000;
 }
