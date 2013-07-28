@@ -2,7 +2,7 @@ Blog::Application.routes.draw do
 
 
   #subscription
-  match '/subscribe/', to: 'subscriptions#create', via: 'post', as: 'subscribe'
+  match '/subscribe/:confirm_token', to: 'subscriptions#activate', via: 'get', as: 'subscribe'
   match '/subscribe/', to: 'subscriptions#destroy', via: 'delete'
   match '/subscribe_init', to: 'subscriptions#init', via: ['post', 'get'], as: 'subscribe_init'
   match '/subscribe_resend', to: 'subscriptions#resend', via: 'post', as: 'subscribe_resend'

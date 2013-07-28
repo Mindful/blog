@@ -1,11 +1,12 @@
-<div id="subscribed" class="subscribed bluebox">
+<div id="subscribed" class="subscribed bluebox" <% if @resend %> style="padding-bottom:10px;" <% end %>>
 	<a class="boxclose" id="boxclose" href="javascript:closeSubscribedWindow();"></a>
 	<div id="subscribed-inner" class="tanbox">
 		<p id="subscribed-text"></p>
 	</div>
 	<% if @resend %>
 	  <%= form_tag subscribe_resend_path, { :method => 'post', :remote => true }  do %>
-	    <%= submit_tag "Resend Activation Email", :name => nil, :style => "margin-bottom:9px", :onclick => "closeSubscribedWindow();" %>
+	    <%= hidden_field_tag 'email', @subscription.email %>
+	    <%= submit_tag "Resend Activation Email", :name => nil, :style => "margin-bottom:9px", :onclick => "closeSubscribedWindow();", :id => 'resend' %>
 	  <% end %>
 	<div></div>
 	<% end %>

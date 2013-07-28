@@ -22,21 +22,32 @@ class SubscriptionsController < ApplicationController
 		end
 
 		if (@subscription.save rescue false) #Rescue catches database exception
-			subscribed_window "Thanks for subscribing! A confirmation email has been sent to #{email}."
-			#Confirmation email
+			subscribed_window "Thanks for subscribing! An activation email has been sent to #{email}."
+			activation_email(@subscription)
 		else
 			subscribed_window "Apologies, but we were unable to subscribe you."
 		end
 	end
 
-	def create #accessed through confirmation page
-		#attempt to find by confirm_key, else redirect to root_path
+	def activate #accessed through confirmation page
+		@subscription = Subscription.find_by(confirm_token: params[:confirm_token]))
+		unless @subscription
+			redirect_to root_path 
+			return
+		end
+		@subscription.active = true
+		@subscription.save
+		#render activate, which redirects to root after 10 seconds
 	end
 
 	def destroy
 	end
 
 	def resend
+		email = params[:email]
+		@subscription = Subscription.find_by(email: email)
+		activation_email(@subscription) if @subscription
+		render :js => "$('#resend').prop('disabled', true);"
 	end
 
 	private
