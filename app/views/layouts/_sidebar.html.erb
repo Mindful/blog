@@ -15,7 +15,7 @@
 	  <p>Subsribe via e-mail and receive notifications of new posts!</p>
 	  <%= form_tag subscribe_init_path, { :method => 'post', :remote => true }  do %>
 	  <%= text_field_tag :subscribe, params[:subscribe] %>
-	  <%= submit_tag "Subscribe", :name => nil, :style => "margin-bottom:9px" %>
+	  <%= submit_tag "Subscribe", :name => nil, :style => "margin-bottom:9px", :id => 'subscribe-button' %>
 	<% end %>
 	</div>
 </div>

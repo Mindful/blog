@@ -46,11 +46,23 @@
 
  //subscriptions
    function openSubscribedWindow(text){
-    $('#subscribed').slideUp(200, function(){
-      this.remove()
-    });
-    $('#subscribed').removeAttr('id');
-    $("#subscribed-text").removeAttr('id');
+    var subscribed = $('#subscribed')
+    $('#subscribe-button').prop('disabled', true);
+    if (subscribed.length > 0)
+    {
+      subscribed.slideUp(200, function(){
+        $('#subscribe-button').prop('disabled', false); //problem when this is run the very first time
+        this.remove()
+      });
+      subscribed.removeAttr('id');
+      $("#subscribed-text").removeAttr('id');
+    }
+    else
+    {
+      setTimeout(function(){
+        $('#subscribe-button').prop('disabled', false)}
+        , 200)
+    }
     $('#display').append('<div id="subscribed" class="subscribed bluebox"><div id="subscribed-inner" class="tanbox"><p id="subscribed-text"></p></div></div>');
     $('#subscribe').val("")
     $("#subscribed-text").text(text)
