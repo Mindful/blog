@@ -41,6 +41,8 @@ class SubscriptionsController < ApplicationController
 	end
 
 	def destroy
+		@subscription = Subscription.find_by(confirm_token: params[:confirm_token])
+		@subscription.destroy if @subscription
 	end
 
 	def resend

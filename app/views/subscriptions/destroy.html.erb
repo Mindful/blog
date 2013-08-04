@@ -1,0 +1,26 @@
+<% if @subscription %>
+<div class="bluebox info-page">
+  <div class="tanbox">
+    <div class="info-body" style="text-align: center;">
+      <h3>We won't send any more emails to <%= @subscription.email %>.</h3>
+      <p>...but we're sorry to see you go! If you wish to re-subscribe, simply do so by requesting another activaton email from the index page, where you will be redirected shortly. If you are not redirected, click <%= link_to 'here', root_path %>.</p>
+    </div>
+  </div>
+</div>
+<script>
+$(function(){
+	setTimeout(function(){
+		location.href = "/"
+	}, 7000);
+});
+</script>
+<% else %>
+<div class="bluebox info-page">
+  <div class="tanbox">
+    <div class="info-body" style="text-align: center;">
+      <h3>We couldn't find the subscription you were looking for.</h3>
+      <p>This most likely means you were attempting to delete a subscription that is already gone. Click <%= link_to 'here', root_path %> to return to the index.</p>
+    </div>
+  </div>
+</div>
+<% end %>
