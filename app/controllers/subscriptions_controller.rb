@@ -5,7 +5,6 @@ class SubscriptionsController < ApplicationController
 	def init
 		email = params[:subscribe]
 		@subscription = Subscription.new(email:email)
-		#when we eventually save, rescue to catch exceptions
 
 		if (email=="")
 			subscribed_window j("We can't subscribe you without an email address!")
@@ -43,6 +42,7 @@ class SubscriptionsController < ApplicationController
 	def destroy
 		@subscription = Subscription.find_by(confirm_token: params[:confirm_token])
 		@subscription.destroy if @subscription
+		#render destroy, which redirects to root after 10 seconds (if there was a successful destruction; I.E. if we found a subscription)
 	end
 
 	def resend
@@ -54,7 +54,7 @@ class SubscriptionsController < ApplicationController
 
 	private
 	  def activation_email(subscription, request)
-	  	Mailer.subscription_activation(subscription, request).deliver
+	  	Mailer.subscription_activation(subscription, request)
 	  end
 
 	  def subscribed_window(text, clear = true, resend = false)

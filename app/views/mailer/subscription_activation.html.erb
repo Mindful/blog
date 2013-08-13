@@ -1,1 +1,3 @@
 <p>To complete your subscription, please click <%= link_to 'here', subscribe_activate_url(@subscription.confirm_token, host: @request.host, port: @request.port)  %><p/>
+
+<p>If subscribed unintentionally and would like to remove your email from our database, click <%= link_to 'here', unsubscribe_url(@subscription.confirm_token, host: @request.host, port: @request.port)  %><p/>

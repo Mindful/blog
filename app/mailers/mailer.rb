@@ -6,15 +6,18 @@ class Mailer < ActionMailer::Base
   	@request = request
   	mail(to: @subscription.email,
   		from: "subscriptions@#{request.host}",
-  		subject: "Subscription awaiting activation")
+  		subject: "Subscription awaiting activation").deliver
   end
 
   def new_post(post, request)
+    #This doesn't really work, because we need to tailor the email to each person (at the very least, with an unsubscribe link)
   	@post = post
   	@request = request
-    @shorten_posts = true
-    mail(to: Subscription.where(active: true).each.map {|s| s.email},
-      from:"subscriptions@#{request.host}",
-      subject: "New Post!")
+    Subscription.where(active: true).each do |subscription|
+      @subscription = subscription
+      mail(to: subscription.email,
+        from:"subscriptions@#{request.host}",
+        subject: "New post: \"@post.title\"").deliver
+    end
   end
 end
