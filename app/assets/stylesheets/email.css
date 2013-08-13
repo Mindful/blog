@@ -1,0 +1,30 @@
+.bluebox {
+  background-color:#87adb5;
+  border-radius: 0px;
+}
+
+.tanbox {
+  background-color:#ffd;
+  border-radius: 4px;
+}
+
+div.main
+{
+  padding:2%;
+  margin:2% 30px;
+}
+.head
+{
+  margin-bottom:7%;
+  display:block;
+}
+.image
+{
+  padding:2%;
+  height:60px;
+  width:60px;
+  float:left;
+  position:relative;
+  right:55px;
+  border-radius: 50%;
+}
