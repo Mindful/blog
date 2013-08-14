@@ -1,3 +1,10 @@
-<p>To complete your subscription, please click <%= link_to 'here', subscribe_activate_url(@subscription.confirm_token, host: @request.host, port: @request.port)  %><p/>
+<div class="main tanbox">
+    <div class="head">
+        <div class="bluebox image">
+            <%= image_tag(attachments['shimane_flag.gif'].url, :size => "100%;") %>
+        </div>
+		<p>To complete your subscription, please click <%= link_to 'here', subscribe_activate_url(@subscription.confirm_token, host: @request.host, port: @request.port)  %><p/>
 
-<p>If subscribed unintentionally and would like to remove your email from our database, click <%= link_to 'here', unsubscribe_url(@subscription.confirm_token, host: @request.host, port: @request.port)  %><p/>
+		<p>If subscribed unintentionally and would like to remove your email from our database, click <%= link_to 'here', unsubscribe_url(@subscription.confirm_token, host: @request.host, port: @request.port)  %><p/>
+    </div>
+</div>

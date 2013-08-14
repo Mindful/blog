@@ -18,6 +18,12 @@ div.main
   margin-bottom:7%;
   display:block;
 }
+
+.head img h3 p
+{
+  display:inline;
+}
+
 .image
 {
   padding:2%;
@@ -25,6 +31,6 @@ div.main
   width:60px;
   float:left;
   position:relative;
-  right:55px;
+  right:75px;
   border-radius: 50%;
 }

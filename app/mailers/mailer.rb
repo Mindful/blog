@@ -4,6 +4,7 @@ class Mailer < ActionMailer::Base
   def subscription_activation(subscription, request)
   	@subscription = subscription
   	@request = request
+    attachments.inline['shimane_flag.gif'] = File.read("#{Rails.root}/app/assets/images/shimane_flag.gif")
   	mail(to: @subscription.email,
   		from: "subscriptions@#{request.host}",
   		subject: "Subscription awaiting activation",
@@ -14,7 +15,7 @@ class Mailer < ActionMailer::Base
     #This doesn't really work, because we need to tailor the email to each person (at the very least, with an unsubscribe link)
   	@post = post
   	@request = request
-    attachments.inline['shimane_flag.gif'] = File.read("#{Rails.root}/app/assets/images/shimane_flag.gif") #broken
+    attachments.inline['shimane_flag.gif'] = File.read("#{Rails.root}/app/assets/images/shimane_flag.gif")
     Subscription.where(active: true).each do |subscription|
       @subscription = subscription
       mail(to: subscription.email,
