@@ -8,7 +8,7 @@ development:
   host: localhost
   username: blog
   password: jetblogtime
-  database: app_dev
+  database: blog
   pool: 5
   timeout: 5000
 

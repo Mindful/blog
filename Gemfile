@@ -19,6 +19,7 @@ gem 'bootstrap-will_paginate', '~> 0.0.9'
 gem 'acts-as-taggable-on', '~> 2.4.1'
 gem 'stringex', '~> 2.0.3'
 gem 'roadie', '~> 2.4.1'
+gem 'delayed_job_active_record', '~> 4.0.0'
 
 group :doc do
   gem 'sdoc', '~> 0.3.20', require: false
