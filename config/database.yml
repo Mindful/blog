@@ -24,8 +24,12 @@ test:
   pool: 5
   timeout: 5000
 
-production: #overwritten by heroku
-  adapter: sqlite3
-  database: db/production.sqlite3
+development:
+  adapter: postgresql
+  host: localhost
+  username: blog
+  password: jetblogtime
+  database: blog
   pool: 5
   timeout: 5000
+
