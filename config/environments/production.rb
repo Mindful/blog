@@ -12,7 +12,7 @@ Blog::Application.configure do
  #may need to put actual sendgrid username and pass here; we'll see
   ActionMailer::Base.smtp_settings = {
     :address   => "smtp.mandrillapp.com",
-    :port      => 25, # ports 587 and 2525 are also supported with STARTTLS
+    :port      => 587, # ports 587 and 2525 are also supported with STARTTLS, #587 works
     :enable_starttls_auto => true, # detects and uses STARTTLS
     :user_name => "jtanner2@pacbell.net",
     :password  => "qlMlLi7S9PfYaRx3I38j8A", # SMTP password is any valid API key
