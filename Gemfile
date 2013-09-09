@@ -20,6 +20,7 @@ gem 'acts-as-taggable-on', '~> 2.4.1'
 gem 'stringex', '~> 2.0.3'
 gem 'roadie', '~> 2.4.1'
 gem 'delayed_job_active_record', '~> 4.0.0'
+gem 'daemons', '~> 1.1.9'
 
 group :doc do
   gem 'sdoc', '~> 0.3.20', require: false

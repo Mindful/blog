@@ -1,12 +1,11 @@
 class Mailer < ActionMailer::Base
-  #default from: "subscriptions@#{root_path}"
+  default from: "subscriptions@#{MAIL_DOMAIN}"
 
   def subscription_activation(subscription, request)
   	@subscription = subscription
   	@request = request
     attachments.inline['shimane_flag.gif'] = File.read("#{Rails.root}/app/assets/images/shimane_flag.gif")
   	mail(to: @subscription.email,
-  		from: "subscriptions@#{request.host}",
   		subject: "Subscription awaiting activation",
       css: "email").deliver
   end
@@ -19,9 +18,8 @@ class Mailer < ActionMailer::Base
     Subscription.where(active: true).each do |subscription|
       @subscription = subscription
       mail(to: subscription.email,
-        from:"subscriptions@#{request.host}",
         subject: "New post: \"@post.title\"",
-        css: "email").deliver
+        css: "email")#.deliver #Supposedly not necessary with delayed job
     end
   end
 end

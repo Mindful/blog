@@ -17,7 +17,7 @@ Blog::Application.configure do
     :user_name => "jtanner2@pacbell.net",
     :password  => "qlMlLi7S9PfYaRx3I38j8A", # SMTP password is any valid API key
     :authentication => 'login', # Mandrill supports 'plain' or 'login'
-    :domain => 'jetblog.com', # your domain to identify your server when connecting
+    :domain => MAIL_DOMAIN, # your domain to identify your server when connecting
   }
 
 
