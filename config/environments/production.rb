@@ -11,15 +11,14 @@ Blog::Application.configure do
 
  #may need to put actual sendgrid username and pass here; we'll see
   ActionMailer::Base.smtp_settings = {
-  :address        => 'smtp.sendgrid.net',
-  :port           => '587',
-  :authentication => :plain,
-  :user_name      => ENV['SENDGRID_USERNAME'],
-  :password       => ENV['SENDGRID_PASSWORD'],
-  :domain         => 'heroku.com',
-  :enable_starttls_auto => true
+    :address   => "smtp.mandrillapp.com",
+    :port      => 25, # ports 587 and 2525 are also supported with STARTTLS
+    :enable_starttls_auto => true, # detects and uses STARTTLS
+    :user_name => "jtanner2@pacbell.net",
+    :password  => "qlMlLi7S9PfYaRx3I38j8A", # SMTP password is any valid API key
+    :authentication => 'login', # Mandrill supports 'plain' or 'login'
+    :domain => 'jetblog.com', # your domain to identify your server when connecting
   }
-
 
 
 
