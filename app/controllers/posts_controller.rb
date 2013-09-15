@@ -44,7 +44,7 @@ class PostsController < ApplicationController
     @post = Post.new(create_post_params)
     if @post.save
       flash[:success] = "Post created"
-      Mailer.delay.new_post(@post, request)
+      @post.new_mail(request)
       redirect_to root_url
     else
       @edit_post = true

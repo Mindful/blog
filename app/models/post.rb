@@ -39,6 +39,13 @@ class Post < ActiveRecord::Base
 		category_list.first
 	end
 
+	def new_mail(request)
+	    Subscription.where(active: true).each do |subscription|
+	    	#Mailer.new_post(self, subscription, request.host, request.port).deliver
+	    	Mailer.delay.new_post(self, subscription, request.host, request.port)
+	    end
+	end
+
 	def shortened_content_html
 		Truncato.truncate content_html, max_length: 250
 	end

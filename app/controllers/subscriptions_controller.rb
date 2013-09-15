@@ -22,7 +22,7 @@ class SubscriptionsController < ApplicationController
 
 		if (@subscription.save rescue false) #Rescue catches database exception
 			subscribed_window "Thanks for subscribing! An activation email has been sent to #{email}." #not working
-			activation_email(@subscription, request)
+			@subscription.activation_email(request)
 		else
 			subscribed_window "Apologies, but we were unable to subscribe you."
 		end
@@ -53,9 +53,6 @@ class SubscriptionsController < ApplicationController
 	end
 
 	private
-	  def activation_email(subscription, request)
-	  	Mailer.subscription_activation(subscription, request)
-	  end
 
 	  def subscribed_window(text, clear = true, resend = false)
 	  	@resend = resend
