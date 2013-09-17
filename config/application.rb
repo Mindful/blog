@@ -24,6 +24,3 @@ module Blog
     # config.i18n.default_locale = :de
   end
 end
-
-#Constants
-MAIL_DOMAN = 'jetblog.com'
