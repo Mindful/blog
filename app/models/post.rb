@@ -30,6 +30,10 @@ class Post < ActiveRecord::Base
 		url #this just uses stringex/acts_as_url's url for its param
 	end
 
+	def disqus_id
+		url+id.to_s
+	end
+
 	def set_defaults
 		self.title = @@default_title
 		self.content_markdown = @@default_body

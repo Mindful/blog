@@ -22,6 +22,9 @@
         <% end %>
 	<hr class="end-post-section"/>
     </div>
+    <% if @posts %>
+      <%= link_to '', public_post_path(post, :anchor => "disqus_thread"), style: "float:right;" %>
+    <% end %>
     <p class="post-tags">
         <%= raw post.tag_list.map { |tag| link_to(tag.titleize, search_tag_path(tag), :class => "tag") }.join('  ') %> <!-- this might be clearer in a do each block, and maybe with a post class instance method -->
     </p>
