@@ -24,6 +24,11 @@ Blog::Application.routes.draw do
   match '/category/:category', to: 'posts#search_index', via: 'get', as: 'search_category'
   match '/search', to: 'posts#search_index', via: 'get', as: 'search'
 
+  #pictures
+  match '/admin/pictures/new', to: 'pictures#new', via: 'get'
+  match '/admin/pictures/create', to: 'pictures#create', via: 'post'
+  #match '/gallery' to: 'pictures#index', via: 'get'
+
 
   #static pages
   match '/about', to: 'static_pages#about', via: 'get'
