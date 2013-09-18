@@ -1,2 +1,5 @@
-<h1>Pictures#index</h1>
-<p>Find me in app/views/pictures/index.html.erb</p>
+<h1>StaticPages#gallery</h1>
+<p>Find me in app/views/static_pages/gallery.html.erb</p>
+<%= image_tag @picture.image.url(:large) %>
+<%= image_tag @picture.image.url(:medium) %>
+<%= image_tag @picture.image.url(:thumb) %>

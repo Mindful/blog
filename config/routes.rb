@@ -27,12 +27,11 @@ Blog::Application.routes.draw do
   #pictures
   match '/admin/pictures/new', to: 'pictures#new', via: 'get'
   match '/admin/pictures/create', to: 'pictures#create', via: 'post'
-  #match '/gallery' to: 'pictures#index', via: 'get'
+  match '/gallery', to: 'pictures#index', via: 'get'
 
 
   #static pages
   match '/about', to: 'static_pages#about', via: 'get'
-  match '/gallery', to: 'static_pages#gallery', via: 'get' #this may end up being photos#index
   match '/map', to: 'static_pages#map', via: 'get' #this may end up being maps#index
   match '/jet', to: 'static_pages#jet', via: 'get'
   match '/admin', to: 'static_pages#admin', via: 'get'
