@@ -13,6 +13,7 @@
 // jquery.inview.min.js is a vendor thing (https://github.com/protonet/jquery.inview) so it's in vendor/assets/javascripts
 //
 //= require jquery
+//= require fancybox
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap

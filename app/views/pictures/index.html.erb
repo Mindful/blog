@@ -5,10 +5,22 @@
 	     	<% Picture.all.each_slice(5) do |row| %>
 	     	<tr>
 	     	  <% row.each do |picture| %>
-			    <td><%= link_to image_tag(picture.image.url(:thumb), alt: picture.name), picture.image.url %></td>
+			    <td><%= link_to image_tag(picture.image.url(:thumb), alt: picture.name), picture.image.url(:large), :class => "fancybox" %></td>
 	     	  <% end %>
 			</tr>
 	     	<% end %>
 		</table>
     </div>
 </div>
+
+<script>
+$(document).ready(function(){
+  $("a.fancybox").fancybox({
+  	helpers:  {
+    overlay: {
+        locked: false
+    }
+}
+  });
+});
+</script>
