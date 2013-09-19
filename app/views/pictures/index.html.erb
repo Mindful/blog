@@ -1,5 +1,14 @@
-<h1>StaticPages#gallery</h1>
-<p>Find me in app/views/static_pages/gallery.html.erb</p>
-<%= image_tag @picture.image.url(:large) %>
-<%= image_tag @picture.image.url(:medium) %>
-<%= image_tag @picture.image.url(:thumb) %>
+<% provide(:title, 'Gallery') %>
+<div class="bluebox info-page">
+     <div class="info-body">
+     	<table border="0">
+	     	<% Picture.all.each_slice(5) do |row| %>
+	     	<tr>
+	     	  <% row.each do |picture| %>
+			    <td><%= link_to image_tag(picture.image.url(:thumb), alt: picture.name), picture.image.url %></td>
+	     	  <% end %>
+			</tr>
+	     	<% end %>
+		</table>
+    </div>
+</div>
