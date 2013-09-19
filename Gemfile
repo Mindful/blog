@@ -24,6 +24,10 @@ gem 'delayed_job_active_record', '~> 4.0.0'
 gem 'daemons', '~> 1.1.9'
 gem 'paperclip', '~> 3.0'
 
+gem 'vlad', :require => false 
+gem 'vlad-git', :require => false
+gem 'vlad-nginx', :require => false
+
 group :doc do
   gem 'sdoc', '~> 0.3.20', require: false
 end
