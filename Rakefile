@@ -24,10 +24,15 @@ namespace :vlad do
     run "sudo service nginx restart"
   end
 
+  desc 'Symlink paperclip storage directory'
+  remote_task :symlink_config, :roles => :web do
+    run "ln -s #{current_release}/public/system /home/josh/web_storage/blog/system"
+  end
+
   desc "Full deployment cycle: Update, migrate, restart, cleanup"
   remote_task :deploy, :roles => :app do
     Rake::Task['vlad:update'].invoke
-    #Rake::Task['vlad:symlink_config'].invoke
+    Rake::Task['vlad:symlink_config'].invoke
     Rake::Task['vlad:migrate'].invoke
     Rake::Task['vlad:restart_app'].invoke
     Rake::Task['vlad:cleanup'].invoke
