@@ -151,10 +151,11 @@ GEM
     vlad (2.6.2)
       rake (>= 0.8, < 11.0)
       rake-remote_task (~> 2.1)
+    vlad-extras (0.7.3)
+      rake-remote_task (~> 2.1)
+      vlad (>= 2.2.4, < 3)
     vlad-git (2.2.0)
       vlad (>= 2.1.0)
-    vlad-nginx (1.0.0)
-      vlad (~> 2)
     will_paginate (3.0.5)
 
 PLATFORMS
@@ -183,6 +184,6 @@ DEPENDENCIES
   turbolinks (~> 1.1.1)
   uglifier (~> 2.1.1)
   vlad
+  vlad-extras
   vlad-git
-  vlad-nginx
   will_paginate (~> 3.0.4)
