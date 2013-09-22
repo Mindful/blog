@@ -6,10 +6,18 @@ set :revision, "origin/master"
 set :web, "nginx"
 set :user, "josh"
 
+
+#The symlinking here may be redundant, but we need to delayed_job ourself because
+#the directory has changed since vlad-extras was created (it's now in bin)
 namespace :vlad do
   desc "Symlinks the configuration files"
   remote_task :symlink_config, :roles => :web do
       run "ln -sfn #{shared_path}/system #{current_path}/public/system"
+  end
+
+  desc "Restarts delayed_job"
+  remote_task :restart_delayed_job, :roles => :app do
+  	run "cd #{current_path} && RAILS_ENV=production bin/delayed_job restart"
   end
 
 end
@@ -19,6 +27,7 @@ set :deploy_tasks, %w(
   vlad:symlink_config
   vlad:assets:precompile
   vlad:migrate
+  vlad:restart_delayed_job
   vlad:start_app
   vlad:cleanup)
 
