@@ -8,7 +8,7 @@ begin
   require 'vlad-extras'
   Vlad.load(:web => :nginx, :app => :passenger, :scm => :git, :queue => :delayed_job)
 rescue LoadError
-  puts 'Could not load Vlad'
+  puts 'Could not load Vlad (this is fine in deploy/production)'
 end
 
 Blog::Application.load_tasks
