@@ -48,7 +48,7 @@ class SubscriptionsController < ApplicationController
 	def resend
 		email = params[:email]
 		@subscription = Subscription.find_by(email: email)
-		activation_email(@subscription, request) if @subscription
+		@subscription.activation_email(request) if @subscription
 		render :js => "$('#resend').prop('disabled', true);"
 	end
 
