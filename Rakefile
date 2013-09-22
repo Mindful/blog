@@ -6,7 +6,7 @@ require File.expand_path('../config/application', __FILE__)
 begin
   require 'vlad'
   require 'vlad-extras'
-  Vlad.load (:web => :nginx, :app => :passenger, :scm => :git, :queue => :delayed_job)
+  Vlad.load(:web => :nginx, :app => :passenger, :scm => :git, :queue => :delayed_job)
 rescue LoadError
   puts 'Could not load Vlad'
 end
