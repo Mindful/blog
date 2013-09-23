@@ -26,5 +26,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_url if @login
   end
 
+  
+  def routing_error
+    render "404", :status => 404
+  end
+
 
 end

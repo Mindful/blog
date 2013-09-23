@@ -26,6 +26,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find_by(url: params[:id])
+    routing_error unless @post
   end
 
   def new

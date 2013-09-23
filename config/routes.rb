@@ -41,6 +41,10 @@ Blog::Application.routes.draw do
   match '/logout', to: 'sessions#destroy', via: 'delete' 
   match '/authenticate', to: 'sessions#create', via: 'post'
 
+
+  #Catch all for extra routes; this _MUST_ be the last thing in the routing file
+  match "*a", :to => "application#routing_error", via: 'get'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
