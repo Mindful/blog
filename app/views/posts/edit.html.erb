@@ -54,4 +54,9 @@
 		</div>
 </div>
 
+<script>
+var pictures_large = <%= raw Picture.all.map {|p| p.image.url(:large, timestamp: false)}.to_json %>
+var pictures_medium = <%= raw Picture.all.map {|p| p.image.url(:medium, timestamp: false)}.to_json %>
+</script>
+
 

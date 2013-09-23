@@ -20,6 +20,14 @@ class PicturesController < ApplicationController
   	@picture = Picture.first
   end
 
+  def medium
+    render json: Picture.all.map {|p| p.image.url(:medium, timestamp: false)}
+  end
+
+  def large
+    render json: Picture.all.map {|p| p.image.url(:large, timestamp: false)}
+  end
+
   private
     def create_picture_params
     	 params.require(:picture).permit! #permit all

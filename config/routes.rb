@@ -29,6 +29,10 @@ Blog::Application.routes.draw do
   match '/admin/pictures/create', to: 'pictures#create', via: 'post'
   match '/gallery', to: 'pictures#index', via: 'get'
 
+  #ajax pictures
+  match '/pictures_large', to: 'pictures#large', via: 'post'
+  match '/pictures_medium', to: 'pictures#medium', via: 'post'
+
 
   #static pages
   match '/about', to: 'static_pages#about', via: 'get'
