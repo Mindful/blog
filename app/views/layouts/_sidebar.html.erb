@@ -1,22 +1,22 @@
  <div id="sidebar" class="span4 bluebox">
-	<div class="sidebar tanbox" id="search">
-	  <%= form_tag search_path, :method => 'get' do %>
-	  <%= text_field_tag :search, params[:search], :class => "input-field" %>
-	  <%= submit_tag "Search", :name => nil, :style => "margin-bottom:9px", :class => "input-btn" %>
-	<% end %>
+	<div class="sidebar tanbox" id="subscribe">
+	   <%= form_tag subscribe_init_path, { :method => 'post', :remote => true }  do %>
+	   <%= text_field_tag :subscribe, params[:subscribe], :class => "input-field" %>
+	   <%= submit_tag "Subscribe", :name => nil, :style => "margin-bottom:9px", :id => 'subscribe-button', :class => "input-btn" %>
+	  <% end %>
+	   <p style="text-align:center">Subsribe via e-mail and receive notifications of new posts!</p>
 	</div>
 	<div class="sidebar tanbox" id="categories">
-	<h3>Categories:</h3>
-	<span class="cat_divider">  &middot;</span>
-	<% Category.all.each do |category| %>
-		<%= link_to category.name.titleize, search_category_path(category) %><span class="cat_divider">  &middot;</span>
-	<% end %>
-	</div>
-	<div class="sidebar tanbox" id="search">
-	  <p>Subsribe via e-mail and receive notifications of new posts!</p>
-	  <%= form_tag subscribe_init_path, { :method => 'post', :remote => true }  do %>
-	  <%= text_field_tag :subscribe, params[:subscribe], :class => "input-field" %>
-	  <%= submit_tag "Subscribe", :name => nil, :style => "margin-bottom:9px", :id => 'subscribe-button', :class => "input-btn" %>
-	<% end %>
-	</div>
+	 <p style="font-size:25px;margin-bottom:20px;">Categories:</p>
+         <div class="abstract" style="padding-left:5%">
+	  <% Category.all.each do |category| %>
+		<%= link_to category.name.titleize, search_category_path(category) %><br/><hr class="cat-divider"/>
+	  <% end %>
+	 </div>
+	   <%= form_tag search_path,:method => 'get' do %>
+	   <%= text_field_tag :search, params[:search], :class => "input-field" %>
+	   <%= submit_tag "Search", :name => nil, :style => "margin-bottom:9px", :class => "input-btn" %>
+	  <% end %>
+	  <p style="text-align:center">Full-text search of all posts</p>
+       </div>
 </div>
