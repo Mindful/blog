@@ -21,7 +21,7 @@
         var marker;
         var map_options = {
           center: new google.maps.LatLng(34.89930, 132.07978),
-          zoom: 12,
+          zoom: 13,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         }
         map = new google.maps.Map(map_canvas, map_options)
@@ -37,21 +37,23 @@
           <% if l.post %>
             ,animation: google.maps.Animation.DROP
           });
-          var tooltip = new google.maps.InfoWindow(
+
+          google.maps.event.addListener(marker, 'click', function() {
+            new google.maps.InfoWindow(
             { content: '<a href="<%= public_post_path(l.post) %>" class="map_link"> <%= l.post.title %></a>',
               size: new google.maps.Size(50,50)
-            });
+            }).open(map,this) 
+          });
           <% else %>
           });
-          var tooltip = new google.maps.InfoWindow(
-            { content: '<b><%= l.name %></b>',
-              size: new google.maps.Size(50,50)
-            });
 
-          <% end %>
-          google.maps.event.addListener(marker, 'click', function() {
-            tooltip.open(map,this) //This won't work when we have multiple tooltips
+           google.maps.event.addListener(marker, 'click', function() {
+            new google.maps.InfoWindow(
+            { content: '<span class="map_label"><%= l.name %></span>',
+              size: new google.maps.Size(50,50)
+            }).open(map,this)
           });
+          <% end %>
         <% end %>
       }
       google.maps.event.addDomListener(window, 'load', initialize);
