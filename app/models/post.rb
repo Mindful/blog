@@ -3,6 +3,8 @@ class Post < ActiveRecord::Base
 	@@default_title = "Post title"
 	@@default_body = "Post body"
 
+	has_one :location
+
 	#may need a "content searchable" here
 	pg_search_scope :search, 
     :against => {  
