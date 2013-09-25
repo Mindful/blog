@@ -1113,6 +1113,22 @@ var createImageDialog = function() {
             // The table (new!)
             body.appendChild(buildTable())
 
+            //The selector (new!)
+            var select = doc.createElement("select")
+            select.innerHTML ='<option value="large">Large</option><option value="medium">Medium</option>'
+            select.style.marginLeft = "230px"
+            select.style.marginTop = "-40px"
+            select.id="image_size_selector"
+            select.onchange = function (){
+                var self = $(this)
+                var imageInput = $('#image_input')
+                if (imageInput.data('setTo')==imageInput.val()){
+                    //Has been set and not changed
+                    setImage(imageInput.data('i'), imageInput.data('j'))
+                }
+                }
+            header.appendChild(select)
+
             // The dialog text.
             var question = doc.createElement("p");
             question.innerHTML = text;
@@ -2259,9 +2275,11 @@ var createImageDialog = function() {
 
 })();
 
+
+
 function setImage(i, j){
       var imageUrl = location.protocol + '//' + location.host
-      var size = "NOP"
+      var size = $('#image_size_selector').val()
       switch (size)
       {
             case 'large':
@@ -2274,5 +2292,9 @@ function setImage(i, j){
                   imageUrl += pictures_large[i][j];
                   break;
       }
-      $('#image_input').val(imageUrl);
+      var imageInput = $('#image_input')
+      imageInput.val(imageUrl);
+      imageInput.data('i', i)
+      imageInput.data('j', j)
+      imageInput.data('setTo', imageUrl)
 }
