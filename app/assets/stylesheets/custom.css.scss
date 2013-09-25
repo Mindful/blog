@@ -76,6 +76,13 @@ footer ul {
   list-style: none;
 }
 
+div.footer {
+  background-color:white;
+  border-radius:4px;
+  padding:2%;
+  color:rgb(20,20,20);
+}
+
 /* header */
 
 header
@@ -213,7 +220,7 @@ hr.end-post-section
 .tag
 {
   color:#ffd;
-  background-color:rgb(0,85,128);
+  background-color:#87adb5;
   padding:3px;
   border-radius:2px;
   text-decoration:none;
@@ -226,6 +233,10 @@ hr.end-post-section
   text-decoration:none;
 }
 
+.comments {
+  @extend .post;
+}
+
 .submit-btn
 {
   @extend .btn;
@@ -233,6 +244,7 @@ hr.end-post-section
   margin-left:10%;
   font-size: 20px;
 }
+
 
 /* sidebar */
 
@@ -248,6 +260,15 @@ div.sidebar
   margin:2% 30px;
 }
 
+input.input-btn {
+  height:29px;
+  border-radius:3px;
+}
+
+input.input-field{
+  width:180px;
+}
+
 #search form
 {
   margin: 0;
@@ -255,6 +276,15 @@ div.sidebar
 
 #categories a
 {
+  font-size:16px;
+}
+
+#categories h3
+{
+margin-top:0;
+}
+
+.cat_divider {
   font-size:20px;
 }
 
@@ -275,6 +305,11 @@ div.sidebar
   padding: 2%;
 }
 
+/*new image page*/
+#new_image {
+  padding: 2%;
+}
+
 /* error styling */
 #error_explanation {
   color: #f00;
@@ -283,6 +318,7 @@ div.sidebar
     margin: 0 0 18px 0;
   }
 }
+
 
 .field_with_errors {
   @extend .control-group;

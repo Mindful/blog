@@ -1,21 +1,22 @@
  <div id="sidebar" class="span4 bluebox">
 	<div class="sidebar tanbox" id="search">
 	  <%= form_tag search_path, :method => 'get' do %>
-	  <%= text_field_tag :search, params[:search] %>
-	  <%= submit_tag "Search", :name => nil, :style => "margin-bottom:9px" %>
+	  <%= text_field_tag :search, params[:search], :class => "input-field" %>
+	  <%= submit_tag "Search", :name => nil, :style => "margin-bottom:9px", :class => "input-btn" %>
 	<% end %>
 	</div>
 	<div class="sidebar tanbox" id="categories">
 	<h3>Categories:</h3>
+	<span class="cat_divider">  &middot;</span>
 	<% Category.all.each do |category| %>
-		<%= link_to category.name.titleize, search_category_path(category) %><br/>
+		<%= link_to category.name.titleize, search_category_path(category) %><span class="cat_divider">  &middot;</span>
 	<% end %>
 	</div>
 	<div class="sidebar tanbox" id="search">
 	  <p>Subsribe via e-mail and receive notifications of new posts!</p>
 	  <%= form_tag subscribe_init_path, { :method => 'post', :remote => true }  do %>
-	  <%= text_field_tag :subscribe, params[:subscribe] %>
-	  <%= submit_tag "Subscribe", :name => nil, :style => "margin-bottom:9px", :id => 'subscribe-button' %>
+	  <%= text_field_tag :subscribe, params[:subscribe], :class => "input-field" %>
+	  <%= submit_tag "Subscribe", :name => nil, :style => "margin-bottom:9px", :id => 'subscribe-button', :class => "input-btn" %>
 	<% end %>
 	</div>
 </div>
