@@ -15,21 +15,44 @@
 </div>
 
 <script>
+    var map;
       function initialize() {
         var map_canvas = document.getElementById('map_canvas');
+        var marker;
         var map_options = {
-          center: new google.maps.LatLng(34.88030, 132.15111),
-          zoom: 10,
+          center: new google.maps.LatLng(34.89930, 132.07978),
+          zoom: 12,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         }
-        var map = new google.maps.Map(map_canvas, map_options)
-              var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-var marker = new google.maps.Marker({
-  position: new google.maps.LatLng(34.88030, 132.15111),
-  map: map,
-  icon: iconBase + 'schools_maps.png',
-  shadow: iconBase + 'schools_maps.shadow.png'
-});
+        map = new google.maps.Map(map_canvas, map_options)
+              var iconBase = window.location.protocol+"//"+window.location.host+"/";
+
+
+        <% @locations.each do |l| %>
+          marker = new google.maps.Marker({
+            position: new google.maps.LatLng(<%= l.latitude %>, <%= l.longitude %>),
+            map: map,
+            icon: iconBase + '<%= l.icon %>',
+            title: '<%= l.name %>'
+          <% if l.post %>
+            ,animation: google.maps.Animation.DROP
+          });
+          var tooltip = new google.maps.InfoWindow(
+            { content: '<a href="<%= public_post_path(l.post) %>" class="map_link"> <%= l.post.title %></a>',
+              size: new google.maps.Size(50,50)
+            });
+          <% else %>
+          });
+          var tooltip = new google.maps.InfoWindow(
+            { content: '<b><%= l.name %></b>',
+              size: new google.maps.Size(50,50)
+            });
+
+          <% end %>
+          google.maps.event.addListener(marker, 'click', function() {
+            tooltip.open(map,this) //This won't work when we have multiple tooltips
+          });
+        <% end %>
       }
       google.maps.event.addDomListener(window, 'load', initialize);
 </script>

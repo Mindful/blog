@@ -6,6 +6,7 @@ class StaticPagesController < ApplicationController
   end
 
   def map
+  	@locations = Location.all
   end
 
   def jet
