@@ -1,5 +1,12 @@
 class PicturesController < ApplicationController
 
+
+  SELECT_SLICE = 3
+
+  def self.select_slice
+    SELECT_SLICE
+  end
+
   before_action :require_login, except: [:index]
 
   def new
@@ -21,11 +28,19 @@ class PicturesController < ApplicationController
   end
 
   def medium
-    render json: Picture.all.map {|p| p.image.url(:medium, timestamp: false)}
+    render json: Picture.all.map {|p| p.image.url(:medium, timestamp: false)}.each_slice(PicturesController.select_slice)
   end
 
   def large
-    render json: Picture.all.map {|p| p.image.url(:large, timestamp: false)}
+    render json: Picture.all.map {|p| p.image.url(:large, timestamp: false)}.each_slice(PicturesController.select_slice)
+  end
+
+  def thumb
+    render json: Picture.all.map {|p| p.image.url(:thumb, timestamp: false)}.each_slice(PicturesController.select_slice)
+  end
+
+  def name
+    render json: Picture.all.map {|p| p.name}.each_slice(PicturesController.select_slice)
   end
 
   private

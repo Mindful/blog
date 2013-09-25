@@ -55,8 +55,10 @@
 </div>
 
 <script>
-var pictures_large = <%= raw Picture.all.map {|p| p.image.url(:large, timestamp: false)}.to_json %>
-var pictures_medium = <%= raw Picture.all.map {|p| p.image.url(:medium, timestamp: false)}.to_json %>
+var pictures_large = <%= raw Picture.all.map {|p| p.image.url(:large, timestamp: false)}.each_slice(PicturesController.select_slice).to_json %>
+var pictures_medium = <%= raw Picture.all.map {|p| p.image.url(:medium, timestamp: false)}.each_slice(PicturesController.select_slice).to_json %>
+var pictures_thumb = <%= raw Picture.all.map {|p| p.image.url(:thumb, timestamp: false)}.each_slice(PicturesController.select_slice).to_json %>
+var pictures_name = <%= raw Picture.all.map {|p| p.name}.each_slice(PicturesController.select_slice).to_json %>
 </script>
 
 

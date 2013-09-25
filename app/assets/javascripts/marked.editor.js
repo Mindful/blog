@@ -1059,7 +1059,111 @@ else
         };
 
 
+/// --------------
+/// NEW STUFF START
+/// --------------
 
+
+var buildTable = function (){
+      var tableNode = document.createElement("div")
+      tableNode.style.height="100px"
+      tableNode.style.overflow="auto"
+      var tableHtml = '<table border="0">'
+      for (var i = 0; i < pictures_thumb.length; i++){
+            tableHtml+='<tr>'
+            var subList = pictures_thumb[i]
+            for (var j = 0; j < subList.length; j++)
+            {
+                  tableHtml+='<td>'
+                  tableHtml+='<a onclick="setImage('+i+','+j+');return false;" href=""><img src="'+pictures_thumb[i][j]+'" alt="'+pictures_name[i][j]+'"></a>' //what this eventually needs to do is insert the picture as a 
+                  //link, the onclick of which sets the text of the input on our prompt to the url 
+                  //for the medium or large size picture
+                  tableHtml+='</td>'
+            }
+            tableHtml+='</tr>'
+      }
+      tableHtml+='</table>'
+      tableNode.innerHTML = tableHtml
+      return tableNode
+
+}
+
+var createImageDialog = function() {
+            // The main dialog box.
+            dialog = doc.createElement("div");
+            dialog.className = "modal hide fade";
+            dialog.style.display = "none";
+
+            // The header.
+            var header = doc.createElement("div");
+            header.className = "modal-header";
+            header.innerHTML = '<a class="close" data-dismiss="modal">×</a> <h3>'+title+'</h3>';
+            dialog.appendChild(header);
+
+            // The body.
+            var body = doc.createElement("div");
+            body.className = "modal-body";
+            dialog.appendChild(body);
+
+            // The footer.
+            var footer = doc.createElement("div");
+            footer.className = "modal-footer";
+            dialog.appendChild(footer);
+
+            // The table (new!)
+            body.appendChild(buildTable())
+
+            // The dialog text.
+            var question = doc.createElement("p");
+            question.innerHTML = text;
+            question.style.padding = "5px";
+            body.appendChild(question);
+
+            // The web form container for the text box and buttons.
+            var form = doc.createElement("form"),
+                style = form.style;
+            form.onsubmit = function () { return close(false); };
+            style.padding = "0";
+            style.margin = "0";
+            body.appendChild(form);
+
+            // The input text box
+            input = doc.createElement("input");
+            input.type = "text";
+            input.value = defaultInputText;
+            input.id = "image_input"
+            style = input.style;
+            style.display = "block";
+            style.width = "80%";
+            style.marginLeft = style.marginRight = "auto";
+            form.appendChild(input);
+
+            // The ok button
+            var okButton = doc.createElement("button");
+            okButton.className = "btn btn-primary";
+            okButton.type = "button";
+            okButton.onclick = function () { return close(false); };
+            okButton.innerHTML = "OK";
+
+            // The cancel button
+            var cancelButton = doc.createElement("button");
+            cancelButton.className = "btn btn-primary";
+            cancelButton.type = "button";
+            cancelButton.onclick = function () { return close(true); };
+            cancelButton.innerHTML = "Cancel";
+
+            footer.appendChild(okButton);
+            footer.appendChild(cancelButton);
+
+            util.addEvent(doc.body, "keydown", checkEscape);
+
+            doc.body.appendChild(dialog);
+        }
+
+
+/// --------------
+/// NEW STUFF END
+/// --------------
         // Create the text input box form/window.
         var createDialog = function () {
             // <div class="modal" id="myModal">
@@ -1148,7 +1252,12 @@ else
         // Is it working around a browser bug?
         setTimeout(function () {
 
-            createDialog();
+            if (title=='Insert Image'){
+                createImageDialog();
+            }
+            else{
+                createDialog();
+            }
 
             var defTextLen = defaultInputText.length;
             if (input.selectionStart !== undefined) {
@@ -2149,3 +2258,21 @@ else
 
 
 })();
+
+function setImage(i, j){
+      var imageUrl = location.protocol + '//' + location.host
+      var size = "NOP"
+      switch (size)
+      {
+            case 'large':
+                  imageUrl += pictures_large[i][j];
+                  break;
+            case 'medium':
+                  imageUrl += pictures_medium[i][j];
+                  break;
+            default:
+                  imageUrl += pictures_large[i][j];
+                  break;
+      }
+      $('#image_input').val(imageUrl);
+}

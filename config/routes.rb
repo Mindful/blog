@@ -32,6 +32,8 @@ Blog::Application.routes.draw do
   #ajax pictures
   match '/pictures_large', to: 'pictures#large', via: 'post'
   match '/pictures_medium', to: 'pictures#medium', via: 'post'
+  match '/pictures_thumb', to: 'pictures#thumb', via: 'post'
+  match '/pictures_name', to: 'pictures#name', via: 'post'
 
 
   #static pages
