@@ -77,10 +77,8 @@ footer ul {
 }
 
 div.footer {
-  background-color:white;
-  border-radius:4px;
   padding:2%;
-  color:rgb(20,20,20);
+  color:white;
 }
 
 /* header */
@@ -257,10 +255,12 @@ hr.end-post-section
 div.sidebar
 {
   padding:2%;
+  padding-top:5%;
   margin:2% 30px;
 }
 
 input.input-btn {
+  width:80px;
   height:29px;
   border-radius:3px;
 }
@@ -269,7 +269,7 @@ input.input-field{
   width:180px;
 }
 
-#search form
+.sidebar form
 {
   margin: 0;
 }
@@ -284,8 +284,12 @@ input.input-field{
 margin-top:0;
 }
 
-.cat_divider {
-  font-size:20px;
+hr.cat-divider {
+  margin:12px auto;
+  height:0px;
+  border:1px dotted #87adb5;
+  width:auto;
+  
 }
 
 /* info pages */
@@ -308,6 +312,19 @@ margin-top:0;
 /*new image page*/
 #new_image {
   padding: 2%;
+}
+
+/*gallery*/
+
+#gallery {
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/*map page*/
+
+#map_canvas {
+  border: solid grey 2px;
 }
 
 /* error styling */
