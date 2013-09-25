@@ -24,8 +24,10 @@
       <%= yield %>
     </div>
     <%= render 'layouts/footer' %>
+    <div class="footer" style="margin-top:12px;">
     <%= debug(params) if Rails.env.development? %>
     <%= debug(yield(:title)) if Rails.env.development? %>
+    </div>
    </div>
   </body>
 </html>

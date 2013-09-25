@@ -1,4 +1,5 @@
 <%= render 'layouts/error_messages', :item => @picture %>
+<div class="bluebox" id="new_image">
 <%= form_for @picture, :url => admin_pictures_create_path, :html => { :multipart => true } do |f| %>
  <%= f.label :name %>
  <%= f.text_field :name %>
@@ -6,3 +7,4 @@
  <%= f.file_field :image %>
  <%= f.submit @btn, :class => "submit-btn", :value => "Save picture"%>
 <% end %>
+</div>
