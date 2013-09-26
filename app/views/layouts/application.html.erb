@@ -7,8 +7,7 @@
     <%= javascript_include_tag yield(:page_specific_javascript), "data-turbolinks-track" => true %>
     <% if yield(:maps) %>
       <script type="text/javascript" 
-        src="http://maps.googleapis.com/maps/api/js?sensor=false">
-      </script>
+        src="http://maps.googleapis.com/maps/api/js?sensor=false&cachebuster=<%=rand(0..1000)*Time.now.to_i%>"></script>
     <% end %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>

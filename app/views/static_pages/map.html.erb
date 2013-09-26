@@ -1,32 +1,32 @@
  <% provide(:maps, true) %>
-     <style>
-      #map_canvas {
-        width: 625px;
-        height: 500px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-    </style>
+ <style>
+  #map_canvas {
+    width: 625px;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
 
 <div class="bluebox info-page">
  <div class="tanbox info-body">
-       <div id="map_canvas"></div>
+    <div id="map_canvas"></div>
  </div>
 </div>
 
 <script>
-    var map;
+      var map;
       function initialize() {
         var map_canvas = document.getElementById('map_canvas');
         var marker;
         var map_options = {
-          center: new google.maps.LatLng(34.89930, 132.07978),
+          center: new google.maps.LatLng(<%= MAPS_DEFAULT_LAT %>, <%= MAPS_DEFAULT_LNG %>),
           zoom: 13,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.HYBRID
         }
         map = new google.maps.Map(map_canvas, map_options)
-              var iconBase = window.location.protocol+"//"+window.location.host+"/";
-
+        
+        var iconBase = window.location.protocol+"//"+window.location.host+"/";
 
         <% @locations.each do |l| %>
           marker = new google.maps.Marker({
