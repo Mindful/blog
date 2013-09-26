@@ -301,7 +301,6 @@ div.sidebar
 input.input-btn {
   width:30%;
   height:29px;
-  border-radius:3px;
   padding:0;
 }
 
@@ -374,6 +373,13 @@ hr.cat-divider {
 }
 
 /* error styling */
+
+div.alert.alert-error{
+  min-width:1120px;
+  z-index:999;
+  position:absolute;
+}
+
 #error_explanation {
   color: #f00;
   ul {
