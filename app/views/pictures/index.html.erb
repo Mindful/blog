@@ -7,9 +7,9 @@
  border-color: #87adb5; /* or whatever */
 }
 </style>
-<div class="bluebox info-page">
+<div class="bluebox info-page" id="gallery">
      <div class="tanbox info-body">
-     	<table border="0" id="gallery">
+     	<table border="0" id="gallery-table">
 	     	<% Picture.all.each_slice(5) do |row| %>
 	     	<tr>
 	     	  <% row.each do |picture| %>
