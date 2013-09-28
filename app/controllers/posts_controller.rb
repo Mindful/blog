@@ -59,6 +59,8 @@ class PostsController < ApplicationController
 
   def edit
     flash.now[:error] = "You cannot create a post until you have created at least one #{view_context.link_to('category', admin_index)}".html_safe if Category.count == 0
+    #TODO: Probably need to build a location on the post with @post.build location if there is
+    #not one already. if it's null we just destroy it again in update, no biggie
     @post = Post.find_by(url: params[:id])
     @edit_post = false
     @btn = "Update"

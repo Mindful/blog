@@ -17,14 +17,17 @@
     <button id="location_button" type="onclick" style="float:right;"onclick="openLocation(); return false;">Add Location</button>
     <div id="location_select" class="tanbox" style="float:right;width:725px;height:400px; display:none;">
     	<div style="padding-left: 5px; padding-top: 15px; width:90px; float:left">
-    		<button id="save_location" type="onclick" style="width:70px" onclick="saveLocation(); return false;">Save Location</button>
+    		<button type="onclick" style="width:70px" onclick="saveLocation(); return false;">Save Location</button>
     		<br/>
-    		<span id="lat" style="font-size:10px;">Latitude: None</span>
+    		<span id="lat" style="font-size:10px;">No latitude saved</span>
     		<br/>
-    		<span id="lng" style="font-size:10px;">Longitude: None</span>
+    		<span id="lng" style="font-size:10px;">No longitude saved</span>
     		<br/>
-    		<button id="revert_location" type="onclick" style="width:70px" onclick="revertLocation(); return false;">Go To Saved</button>
-    		<br/>
+    		<button type="onclick" style="width:70px" onclick="revertLocation(); return false;">Go To Saved</button>
+    		<br/><br/><br/>
+    		<br/><br/><br/>
+    		<br/><br/><br/>
+    		<button type="onclick" style="width:70px" onclick="cancelLocation(); return false;">Cancel</button>
     	</div>
     	<div id="map_select_canvas" style = "height:350px; width:600px; margin-right:25px; float:right; margin-top:25px;" class="gmap">
     	<input type="text" id="search_address" value=""/>

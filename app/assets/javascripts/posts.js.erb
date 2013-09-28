@@ -22,6 +22,7 @@ jQuery(document).ready(function(){
 	//Sync title with title field
 	$('#post_title').bind('input propertychange', function() {
 	    $('#title').text(this.value);
+	    $('#post_location_attributes_name').val(this.value)
 	});
 	//Sync category with category field
 	var categoryText;
@@ -86,7 +87,7 @@ jQuery(document).ready(function(){
 	//})
 
 
-var first = true, saved = false, current=false;
+var first = true, saved = false, current=false, locationOpen = false;
 function openLocation(){
 	$('#location_button').hide()
 	$('#location_select').show(400, function(){
@@ -101,15 +102,34 @@ function openLocation(){
 
 function saveLocation(){
 	latLng = marker.getPosition();
-	latText.text("Lat: "+latLng.lat().toFixed(6));
-	lngText.text("Lng: "+latLng.lng().toFixed(6));
+	$('#lat').text("Lat: "+latLng.lat().toFixed(6));
+	$('#lng').text("Lng: "+latLng.lng().toFixed(6));
+	$('#post_location_attributes_latitude').val(latLng.lat().toFixed(6))
+	$('#post_location_attributes_longitude').val(latLng.lng().toFixed(6))
 	saved = latLng;
 	updateCurrent();
 }
 
 function revertLocation(){
-	placeMarker(saved)
-	map.setCenter(saved)
+	if (saved){
+		placeMarker(saved)
+		map.setCenter(saved)
+	}
+}
+
+function cancelLocation(){
+	if (locationOpen){
+		saved = false
+		updateCurrent()
+		$('#lat').text("No latitude saved");
+		$('#lng').text("No longitude saved");
+		$('#post_location_attributes_latitude').attr('value', '')
+		$('#post_location_attributes_longitude').attr('value', '')
+		$('#location_select').hide(400, function(){
+			$('#location_button').show()
+		})
+	}
+
 }
 
 function updateCurrent(){
@@ -126,13 +146,11 @@ function updateCurrent(){
 
 
 
-var map, marker, addressField, geocoder, latText, lngText;
+var map, marker, addressField, geocoder;
 var iconBase = window.location.protocol+"//"+window.location.host+"/assets/";
 
 $(document).ready(function(){
 	  addressField = document.getElementById('search_address');
-	  latText = $('#lat')
-	  lngText = $('#lng')
 	  geocoder = new google.maps.Geocoder();
 });
 function mapInit() {

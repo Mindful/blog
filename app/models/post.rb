@@ -41,6 +41,7 @@ class Post < ActiveRecord::Base
 		self.title = @@default_title
 		self.content_markdown = @@default_body
 		self.build_location
+		self.location.name = @@default_title
 	end
 
 	def category
