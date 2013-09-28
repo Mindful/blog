@@ -13,6 +13,8 @@ namespace :vlad do
   desc "Symlinks the configuration files"
   remote_task :symlink_config, :roles => :web do
       run "ln -sfn #{shared_path}/system #{current_path}/public/system"
+      run "ln -sfn #{shared_path}/database.yml #{current_path}/config/database.yml"
+      run "ln -sfn #{shared_path}/mandrill.yml #{current_path}/config/mandrill.yml"
   end
 
   desc "Restarts delayed_job"

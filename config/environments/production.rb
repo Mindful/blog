@@ -1,6 +1,8 @@
 Blog::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  MANDRILL = YAML.load_file("#{Rails.root}/config/mandrill.yml")[Rails.env]
+
   #Additional precompiles:
   config.assets.precompile += ['posts.js']
   config.assets.precompile += ['glyphicons-halflings.png']
@@ -14,8 +16,8 @@ Blog::Application.configure do
     :address   => "smtp.mandrillapp.com",
     :port      => 587, # ports 587 and 2525 are also supported with STARTTLS, #587 works
     :enable_starttls_auto => true, # detects and uses STARTTLS
-    :user_name => "jtanner2@pacbell.net",
-    :password  => "qlMlLi7S9PfYaRx3I38j8A", # SMTP password is any valid API key
+    :user_name => MANDRILL['username'],
+    :password  => MANDRILL['password'], # SMTP password is any valid API key
     :authentication => 'login', # Mandrill supports 'plain' or 'login'
     :domain => 'jetblog.com', # your domain to identify your server when connecting
   }

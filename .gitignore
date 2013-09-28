@@ -19,3 +19,7 @@ doc/
 
 #Ignore paperclip images
 /public/system/*
+
+#Ignore private data
+/config/database.yml
+/config/mandrill.yml
