@@ -86,52 +86,56 @@ jQuery(document).ready(function(){
 	//})
 
 
-var locationOpen = false
-function toggleLocation(){
-	if (locationOpen){
-		$('#location_select').hide(400);
-
-	}
-	else{
-		$('#location_select').show(400, function(){
-			$('#map_select_canvas').show(0);
-			google.maps.event.trigger(map, "resize");
-			console.log("RUN")
-		});
-
-	} 
-	locationOpen = !locationOpen;
+var first = true, saved = false, current=false;
+function openLocation(){
+	$('#location_button').hide()
+	$('#location_select').show(400, function(){
+		if (first){
+			first = false;
+			mapInit();
+		}
+		map.setCenter(marker.getPosition());
+	});
+	locationOpen = true;
 }
 
-var addressField = document.getElementById('search_address');
-var geocoder = new google.maps.Geocoder();
-function search() {
-    geocoder.geocode(
-        {address: addressField.value,
-    	region:'JP',
-    	 latLng: map.center}, 
-        function(results, status) { 
-            if (status == google.maps.GeocoderStatus.OK) { 
-            	console.log(results)
-                var loc = results[0].geometry.location;
-                placeMarker(loc)
-		        map.setCenter(loc)
-		      	if (map.getZoom() < 13)
-		      	{
-		      		map.setZoom(13)
-		      	}
-            } 
-            else {
-                alert("Not found: " + status)
-                //maybe add the red problem style to the search div if it's not found isntead of alert 
-            } 
-        }
-    );
-};
+function saveLocation(){
+	latLng = marker.getPosition();
+	latText.text("Lat: "+latLng.lat().toFixed(6));
+	lngText.text("Lng: "+latLng.lng().toFixed(6));
+	saved = latLng;
+	updateCurrent();
+}
+
+function revertLocation(){
+	placeMarker(saved)
+	map.setCenter(saved)
+}
+
+function updateCurrent(){
+	current = marker.getPosition().equals(saved)
+	if (current){
+		marker.setIcon(iconBase+"pushpin.png")
+	}
+	else {
+		marker.setIcon(iconBase+"dot.png")
+	}
+}
 
 
-var map, marker;
-$(document).ready(function() {
+
+
+
+var map, marker, addressField, geocoder, latText, lngText;
+var iconBase = window.location.protocol+"//"+window.location.host+"/assets/";
+
+$(document).ready(function(){
+	  addressField = document.getElementById('search_address');
+	  latText = $('#lat')
+	  lngText = $('#lng')
+	  geocoder = new google.maps.Geocoder();
+});
+function mapInit() {
 var map_canvas = document.getElementById('map_select_canvas');
 var map_options = {
   center: new google.maps.LatLng(<%= MAPS_DEFAULT_LAT %>, <%= MAPS_DEFAULT_LNG %>),
@@ -142,25 +146,21 @@ map = new google.maps.Map(map_canvas, map_options)
 marker = new google.maps.Marker({
     position: new google.maps.LatLng(<%= MAPS_DEFAULT_LAT %>, <%= MAPS_DEFAULT_LNG %>),
     map: map,
-    icon: window.location.protocol+"//"+window.location.host+"/dot.png",
+    icon: iconBase + "dot.png",
     title: 'Post Location',
     animation: google.maps.Animation.DROP
 });
   google.maps.event.addListener(map, 'rightclick', function(event) {
 	  placeMarker(event.latLng)
-	  console.log(event.latLng.lat())
-	  console.log(event.latLng.lng())
     });
-});
+};
 
 function placeMarker(latLng){
 	marker.setAnimation(google.maps.Animation.DROP)
 	marker.setPosition(latLng)
+	updateCurrent()
 }
 
-var addressField = document.getElementById('search_address');
-
-var geocoder = new google.maps.Geocoder();
 function search() {
     geocoder.geocode(
         {address: addressField.value,
@@ -184,3 +184,5 @@ function search() {
         }
     );
 };
+
+console.log("<%=@title%>")

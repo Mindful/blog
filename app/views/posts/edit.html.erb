@@ -14,11 +14,24 @@
 
     </div>
 
-    <button type="onclick" style="float:right;"onclick="toggleLocation(); return false;">Add Location</button>
-    <div id="location_select" class="tanbox" style="float:right;width:500px;height:300px; display:none;">
-    	<div id="map_select_canvas" style = "height:250px; width:450px; display:none;" class="gmap">
+    <button id="location_button" type="onclick" style="float:right;"onclick="openLocation(); return false;">Add Location</button>
+    <div id="location_select" class="tanbox" style="float:right;width:725px;height:400px; display:none;">
+    	<div style="padding-left: 5px; padding-top: 15px; width:90px; float:left">
+    		<button id="save_location" type="onclick" style="width:70px" onclick="saveLocation(); return false;">Save Location</button>
+    		<br/>
+    		<span id="lat" style="font-size:10px;">Latitude: None</span>
+    		<br/>
+    		<span id="lng" style="font-size:10px;">Longitude: None</span>
+    		<br/>
+    		<button id="revert_location" type="onclick" style="width:70px" onclick="revertLocation(); return false;">Go To Saved</button>
+    		<br/>
+    	</div>
+    	<div id="map_select_canvas" style = "height:350px; width:600px; margin-right:25px; float:right; margin-top:25px;" class="gmap">
+    	<input type="text" id="search_address" value=""/>
+			<button type="onclick" onclick="search(); return false;">Search</button>
     	</div>
     </div>
+    
 
     <div style="clear:both;">
                 <%= f.label :tag_list, "Tags (separated by commas)", :class =>"edit-label" %>
