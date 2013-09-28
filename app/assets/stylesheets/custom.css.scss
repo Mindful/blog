@@ -393,3 +393,8 @@ div.alert.alert-error{
   @extend .control-group;
   @extend .error;
 }
+
+
+.gmap img {
+    max-width: none;
+}

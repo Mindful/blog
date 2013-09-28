@@ -4,11 +4,11 @@
     <title><%= raw(full_title(yield(:title))) %></title>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag yield(:page_specific_javascript), "data-turbolinks-track" => true %>
     <% if yield(:maps) %>
       <script type="text/javascript" 
         src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <% end %>
+    <%= javascript_include_tag yield(:page_specific_javascript), "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
   </head>

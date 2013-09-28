@@ -9,7 +9,7 @@
 
 <div class="bluebox info-page">
  <div class="tanbox info-body row container" style="margin-left:0;width:auto;">
-    <div id="map_canvas" class="span9"></div>
+    <div id="map_canvas" class="span9 gmap"></div>
  </div>
 </div>
 
@@ -26,7 +26,7 @@
         }
         map = new google.maps.Map(map_canvas, map_options)
         
-        var iconBase = window.location.protocol+"//"+window.location.host+"/";
+        var iconBase = window.location.protocol+"//"+window.location.host+"/assets/";
 
         <% @locations.each do |l| %>
           marker = new google.maps.Marker({

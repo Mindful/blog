@@ -1,5 +1,6 @@
 <% provide(:title, @title) %>
 <% provide(:page_specific_javascript, 'posts') %>
+<% provide(:maps, true) %>
 
 
 <div>
@@ -13,7 +14,12 @@
 
     </div>
 
-    <div style="float:right;width:300px;height:300px;background-color:white;"></div>
+    <button type="onclick" style="float:right;"onclick="toggleLocation(); return false;">Add Location</button>
+    <div id="location_select" class="tanbox" style="float:right;width:500px;height:300px; display:none;">
+    	<div id="map_select_canvas" style = "height:250px; width:450px; display:none;" class="gmap">
+    	</div>
+    </div>
+
     <div style="clear:both;">
                 <%= f.label :tag_list, "Tags (separated by commas)", :class =>"edit-label" %>
                  <%= f.text_field :tag_list, :style =>"width:99%;" %>
