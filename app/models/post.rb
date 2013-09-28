@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
 	@@default_body = "Post body"
 
 	has_one :location
+	accepts_nested_attributes_for :location, allow_destroy: true, update_only: true
 
 	#may need a "content searchable" here
 	pg_search_scope :search, 
@@ -39,6 +40,7 @@ class Post < ActiveRecord::Base
 	def set_defaults
 		self.title = @@default_title
 		self.content_markdown = @@default_body
+		self.build_location
 	end
 
 	def category

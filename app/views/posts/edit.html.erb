@@ -31,7 +31,14 @@
 			<button type="onclick" onclick="search(); return false;">Search</button>
     	</div>
     </div>
-    
+    <div id="location_form">
+    <%= f.fields_for :location do |ff| %>
+	    <%= ff.hidden_field :name %>
+	    <%= ff.hidden_field :latitude %>
+	    <%= ff.hidden_field :longitude %>
+	<% end %>
+	</div>
+
 
     <div style="clear:both;">
                 <%= f.label :tag_list, "Tags (separated by commas)", :class =>"edit-label" %>
