@@ -9,10 +9,15 @@
 //
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
+// fancybox 2 http://fancyapps.com/fancybox/#docs
 //
-// jquery.inview.min.js is a vendor thing (https://github.com/protonet/jquery.inview) so it's in vendor/assets/javascripts
+// The ordering here is important; it must be jquery, then jquery.turbolinks, then other things
+// THEN turbolinks
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
+//= require fancybox
 //= require turbolinks
 //= require bootstrap
+//= require turbolinks

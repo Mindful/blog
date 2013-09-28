@@ -15,7 +15,8 @@
 
 <script>
       var map;
-      function initialize() {
+
+      $(document).ready(function() {
         var map_canvas = document.getElementById('map_canvas');
         var marker;
         var map_options = {
@@ -54,6 +55,5 @@
           });
           <% end %>
         <% end %>
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
+      });
 </script>

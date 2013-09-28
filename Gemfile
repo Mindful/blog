@@ -23,6 +23,7 @@ gem 'roadie', '~> 2.4.1'
 gem 'delayed_job_active_record', '~> 4.0.0'
 gem 'daemons', '~> 1.1.9'
 gem 'paperclip', '~> 3.0'
+gem 'jquery-turbolinks', '~> 0.2.1'
 
 
 group :development do
