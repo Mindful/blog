@@ -93,10 +93,10 @@ class PostsController < ApplicationController
   private
 
     def create_post_params #this is basically redundant because it permits all params, but I believe rails requires it
-      params.require(:post).permit(:title, :content_markdown, :content_html, :tag_list, :category_list, location_attributes:[:id, :name, :latitude, :longitude, :post_id, :image])
+      params.require(:post).permit(:title, :content_markdown, :content_html, :tag_list, :category_list, location_attributes:[:name, :latitude, :longitude, :post_id, :image])
     end
 
     def update_post_params
-      params.require(:post).permit(:content_markdown, :content_html, :tag_list, :category_list, location_attributes:[:id, :name, :latitude, :longitude, :post_id, :image])
+      params.require(:post).permit(:content_markdown, :content_html, :tag_list, :category_list, location_attributes:[:id, :name, :latitude, :longitude, :post_id, :image, :_destroy])
     end
 end

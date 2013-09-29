@@ -4,7 +4,8 @@ class Post < ActiveRecord::Base
 	@@default_body = "Post body"
 
 	has_one :location
-	accepts_nested_attributes_for :location, allow_destroy: true, update_only: true
+	accepts_nested_attributes_for :location, allow_destroy: true, 
+	update_only: true, :reject_if => :invalid_location?
 
 	#may need a "content searchable" here
 	pg_search_scope :search, 
@@ -92,5 +93,10 @@ class Post < ActiveRecord::Base
 		def no_default_values
 			errors.add(:title, '- has default value') if self.title == @@default_title
 			errors.add(:content_markdown, '- has default value') if self.content_markdown == @@default_body
+		end
+
+		def invalid_location?(location_hash)
+			location_hash['longitude'].blank? || location_hash['latitude'].blank? 
+			#"".blank? == true and nil.blank? == true. beautiful
 		end
 end
