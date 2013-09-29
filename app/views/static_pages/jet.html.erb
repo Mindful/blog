@@ -1,74 +1,7 @@
- <% provide(:maps, true) %>
- <style>
-  #map_select_canvas {
-    width: 625px;
-    height: 500px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-</style>
 
 <div class="bluebox info-page">
  <div class="tanbox info-body">
- 	<input type="text" id="search_address" value=""/>
-<button onclick="search();">Search</button>
-    <div id="map_select_canvas" class="gmap"></div>
+  So I hear the JET program is pretty cool. 
  </div>
 </div>
 
-<script>
-      var map, marker;
-      $(document).ready(function() {
-        var map_canvas = document.getElementById('map_select_canvas');
-        var map_options = {
-          center: new google.maps.LatLng(<%= MAPS_DEFAULT_LAT %>, <%= MAPS_DEFAULT_LNG %>),
-          zoom: 13,
-          mapTypeId: google.maps.MapTypeId.HYBRID
-        }
-        map = new google.maps.Map(map_canvas, map_options)
-        marker = new google.maps.Marker({
-            position: new google.maps.LatLng(<%= MAPS_DEFAULT_LAT %>, <%= MAPS_DEFAULT_LNG %>),
-            map: map,
-            icon: window.location.protocol+"//"+window.location.host+"/assets/dot.png",
-            title: 'Post Location',
-            animation: google.maps.Animation.DROP
-        });
-	      google.maps.event.addListener(map, 'rightclick', function(event) {
-			  placeMarker(event.latLng)
-			  console.log(event.latLng.lat())
-			  console.log(event.latLng.lng())
-		    });
-      });
-      function placeMarker(latLng){
-      	marker.setAnimation(google.maps.Animation.DROP)
-      	marker.setPosition(latLng)
-      }
-      var addressField = document.getElementById('search_address');
-		
-
-
-    var geocoder = new google.maps.Geocoder();
-		function search() {
-		    geocoder.geocode(
-		        {address: addressField.value,
-		    	region:'JP',
-		    	 latLng: map.center}, 
-		        function(results, status) { 
-		            if (status == google.maps.GeocoderStatus.OK) { 
-		            	console.log(results)
-		                var loc = results[0].geometry.location;
-		                placeMarker(loc)
-				        map.setCenter(loc)
-				      	if (map.getZoom() < 13)
-				      	{
-				      		map.setZoom(13)
-				      	}
-		            } 
-		            else {
-		                alert("Not found: " + status)
-		                //maybe add the red problem style to the search div if it's not found isntead of alert 
-		            } 
-		        }
-		    );
-		};
-</script>
