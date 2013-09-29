@@ -44,7 +44,6 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(create_post_params)
     if @post.save
-      @post.create_location if @post.location.longitude && @post.location.latitude
       flash[:success] = "Post created"
       @post.new_mail(request)
       redirect_to root_url
