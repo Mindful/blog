@@ -59,9 +59,8 @@ class PostsController < ApplicationController
 
   def edit
     flash.now[:error] = "You cannot create a post until you have created at least one #{view_context.link_to('category', admin_index)}".html_safe if Category.count == 0
-    #TODO: Probably need to build a location on the post with @post.build location if there is
-    #not one already. if it's null we just destroy it again in update, no biggie
     @post = Post.find_by(url: params[:id])
+    @post.build_location if @post.location == nil #so the form works
     @edit_post = false
     @btn = "Update"
     @date = @post.created_at.to_s(:pretty)
@@ -69,8 +68,12 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find_by(url: params[:id]) #well this doesn't really work, given that the id is based on the title
-    if @post.update_attributes(update_post_params)
+    @post = Post.find_by(url: params[:id])
+    params = update_post_params
+    if params['location_attributes']['latitude'].blank? && params['location_attributes']['longitude'].blank?
+      params['location_attributes']['_destroy'] = true
+    end
+    if @post.update_attributes(params)
       flash[:success] = "Post updated"
       redirect_to root_url #maybe we should redirect to the post itself?
     else
@@ -97,6 +100,6 @@ class PostsController < ApplicationController
     end
 
     def update_post_params
-      params.require(:post).permit(:content_markdown, :content_html, :tag_list, :category_list, location_attributes:[:id, :name, :latitude, :longitude, :post_id, :image, :_destroy])
+      params.require(:post).permit(:content_markdown, :content_html, :tag_list, :category_list, location_attributes:[:name, :latitude, :longitude, :post_id, :image])
     end
 end
