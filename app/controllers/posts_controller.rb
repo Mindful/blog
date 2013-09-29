@@ -44,6 +44,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(create_post_params)
     if @post.save
+      @post.create_location if @post.location.longitude && @post.location.latitude
       flash[:success] = "Post created"
       @post.new_mail(request)
       redirect_to root_url
@@ -93,10 +94,10 @@ class PostsController < ApplicationController
   private
 
     def create_post_params #this is basically redundant because it permits all params, but I believe rails requires it
-      params.require(:post).permit(:title, :content_markdown, :content_html, :tag_list, :category_list)
+      params.require(:post).permit(:title, :content_markdown, :content_html, :tag_list, :category_list, location_attributes:[:id, :name, :latitude, :longitude, :post_id])
     end
 
     def update_post_params
-      params.require(:post).permit(:content_markdown, :content_html, :tag_list, :category_list)
+      params.require(:post).permit(:content_markdown, :content_html, :tag_list, :category_list, location_attributes:[:id, :name, :latitude, :longitude, :post_id])
     end
 end

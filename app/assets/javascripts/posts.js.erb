@@ -88,12 +88,15 @@ jQuery(document).ready(function(){
 
 
 var first = true, saved = false, current=false, locationOpen = false;
-function openLocation(){
+function openLocation(edit){
 	$('#location_button').hide()
 	$('#location_select').show(400, function(){
 		if (first){
 			first = false;
 			mapInit();
+		}
+		if(edit){
+		  	saveLocation();
 		}
 		map.setCenter(marker.getPosition());
 	});
@@ -123,8 +126,8 @@ function cancelLocation(){
 		updateCurrent()
 		$('#lat').text("No latitude saved");
 		$('#lng').text("No longitude saved");
-		$('#post_location_attributes_latitude').attr('value', '')
-		$('#post_location_attributes_longitude').attr('value', '')
+		$('#post_location_attributes_latitude').val("")
+		$('#post_location_attributes_longitude').val("")
 		$('#location_select').hide(400, function(){
 			$('#location_button').show()
 		})
@@ -148,21 +151,29 @@ function updateCurrent(){
 
 var map, marker, addressField, geocoder;
 var iconBase = window.location.protocol+"//"+window.location.host+"/assets/";
+var startLocation = new google.maps.LatLng(<%= MAPS_DEFAULT_LAT %>, <%= MAPS_DEFAULT_LNG %>);
 
 $(document).ready(function(){
 	  addressField = document.getElementById('search_address');
 	  geocoder = new google.maps.Geocoder();
+	  var lat = $('#post_location_attributes_latitude').val()
+	  var lng = $('#post_location_attributes_longitude').val()
+	  new google.maps.LatLng(<%= MAPS_DEFAULT_LAT %>, <%= MAPS_DEFAULT_LNG %>)
+	  if (lat && lng){
+	  	startLocation = new google.maps.LatLng(lat, lng);
+	  	openLocation(true);
+	  }
 });
 function mapInit() {
 var map_canvas = document.getElementById('map_select_canvas');
 var map_options = {
-  center: new google.maps.LatLng(<%= MAPS_DEFAULT_LAT %>, <%= MAPS_DEFAULT_LNG %>),
+  center: startLocation,
   zoom: 13,
   mapTypeId: google.maps.MapTypeId.HYBRID
 }
 map = new google.maps.Map(map_canvas, map_options)
 marker = new google.maps.Marker({
-    position: new google.maps.LatLng(<%= MAPS_DEFAULT_LAT %>, <%= MAPS_DEFAULT_LNG %>),
+    position: startLocation,
     map: map,
     icon: iconBase + "dot.png",
     title: 'Post Location',
