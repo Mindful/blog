@@ -6,6 +6,6 @@ class Location < ActiveRecord::Base
 
 
 	def icon
-		image+'.png'
+		image+'.png' rescue 'pushpin.png'
 	end
 end

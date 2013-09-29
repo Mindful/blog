@@ -30,7 +30,7 @@
 
         <% @locations.each do |l| %>
           marker = new google.maps.Marker({
-            position: new google.maps.LatLng(<%= l.latitude %>, <%= l.longitude %>),
+            position: new google.maps.LatLng(<%= l.latitude.to_f %>, <%= l.longitude.to_f %>),
             map: map,
             icon: iconBase + '<%= l.icon %>',
             title: '<%= l.name %>'
