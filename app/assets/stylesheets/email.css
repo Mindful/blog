@@ -6,31 +6,65 @@
 .tanbox {
   background-color:#ffd;
   border-radius: 4px;
+  padding:2%;
 }
 
 div.main
 {
   padding:2%;
-  margin:2% 30px;
+  margin:1%;
+  font-family:helvetica;
+  font-size:18px;
 }
+
+hr
+{
+  margin:12px auto;
+  height:0px;
+  border:1px dotted #87adb5;
+  width:50%;
+  clear:both;
+}
+
+a
+{
+  color:#08C;
+}
+
+a:hover
+{
+  color:#058;
+}
+
+p, h1
+{
+  margin:0;
+  margin-top:10px;
+}
+
 .head
 {
-  margin-bottom:7%;
   display:block;
 }
 
-.head img h3 p
+.head img h3
 {
   display:inline;
 }
 
-.image
+.head img
+{
+  width:60px;
+  height:60px;
+}
+
+.post-tab
 {
   padding:2%;
   height:60px;
   width:60px;
   float:left;
   position:relative;
-  right:75px;
+  right:60px;
   border-radius: 50%;
 }

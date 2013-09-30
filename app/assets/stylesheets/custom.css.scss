@@ -250,6 +250,13 @@ hr.end-post-section
     line-height:210%;
     margin:0px;
     padding: 0px;
+    min-height:40px;
+}
+
+.comment-thread-link
+{
+  display:inline;
+  float:right;
 }
 
 .tag
@@ -374,10 +381,15 @@ hr.cat-divider {
 
 /* error styling */
 
-div.alert.alert-error{
-  min-width:1120px;
+div.alert{
+  padding:5px 10px;
+  min-width:1102px;
   z-index:999;
   position:absolute;
+}
+
+.bluebox > .alert {
+  width: 80%
 }
 
 #error_explanation {
