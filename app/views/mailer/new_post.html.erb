@@ -1,9 +1,10 @@
-<div class="main tanbox">
-    <div class="head">
-        <div class="bluebox image">
+<div class="main bluebox">
+    <div class="head tanbox" style="height:100px;">
+        <div class="bluebox post-tab">
             <%= image_tag(attachments['shimane_flag.gif'].url, :size => "100%;") %>
         </div>
-        <p> A new post, <%= link_to "\"#{@post.title}\"", public_post_url(@post, host: @host, port: @port) %> has just been posted!. </p>
-        <p> You are receiving this email because you are subscribed to BLOG_NAME. If you would no longer like to receive these emails and wish to unsubscribe, click <%= link_to 'here', unsubscribe_url(@subscription.confirm_token, host: @host, port: @port)  %><p/>
+        <p> A new post, <%= link_to "\"#{@post.title}\"", public_post_url(@post, host: @host, port: @port) %> has just been posted!</p>
+    </div>
     </div>
 </div>
+<p> You are receiving this email because you are subscribed to BLOG_NAME. If you would no longer like to receive these emails and wish to unsubscribe, click <%= link_to 'here', unsubscribe_url(@subscription.confirm_token, host: @host, port: @port)  %><p/>
